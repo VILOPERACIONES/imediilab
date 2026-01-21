@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '@/assets/imedilab-logo.svg';
+import { Menu, X, ChevronDown } from 'lucide-react';
 
 const packagesData = [
   {
@@ -145,6 +146,14 @@ const categories = [
 
 const Packages = () => {
   const [activeCategory, setActiveCategory] = useState("todos");
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [expandedPackages, setExpandedPackages] = useState<number[]>([]);
+
+  const togglePackageExpand = (id: number) => {
+    setExpandedPackages(prev => 
+      prev.includes(id) ? prev.filter(p => p !== id) : [...prev, id]
+    );
+  };
 
   const filteredPackages = activeCategory === "todos" 
     ? packagesData 
@@ -161,57 +170,88 @@ const Packages = () => {
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
-      <header className="bg-white border-b border-slate-100 px-20 py-4 max-md:px-5">
+      <header className="bg-white border-b border-slate-100 px-5 md:px-20 py-4">
         <nav className="flex max-w-[1200px] mx-auto items-center justify-between">
           <Link to="/">
             <img
               src={logo}
-              className="h-10 object-contain px-2"
+              className="h-8 md:h-10 object-contain px-2"
               alt="IMEDILAB Logo"
             />
           </Link>
-          <div className="flex items-center gap-8 text-sm font-medium text-slate-600">
+          
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600">
             <Link to="/#empresas" className="hover:text-slate-900 transition-colors">Empresas</Link>
             <Link to="/#nosotros" className="hover:text-slate-900 transition-colors">Nosotros</Link>
             <Link to="/#servicios" className="hover:text-slate-900 transition-colors">Servicios</Link>
             <Link to="/paquetes" className="text-[#FF431B] font-semibold">Paquetes</Link>
             <Link to="/#sucursales" className="hover:text-slate-900 transition-colors">Sucursales</Link>
           </div>
-          <button className="bg-slate-900 flex items-center gap-2 text-white text-sm font-medium px-5 py-2.5 rounded-full hover:bg-slate-800 transition-colors">
+          
+          {/* Desktop CTA */}
+          <button className="hidden md:flex bg-slate-900 items-center gap-2 text-white text-sm font-medium px-5 py-2.5 rounded-full hover:bg-slate-800 transition-colors">
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
             </svg>
             <span>Agendar Cita</span>
           </button>
+
+          {/* Mobile Menu Button */}
+          <button 
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="md:hidden p-2 text-slate-700"
+          >
+            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
         </nav>
       </header>
 
+      {/* Mobile Menu */}
+      {mobileMenuOpen && (
+        <div className="md:hidden bg-white border-b border-slate-100 px-5 py-6 shadow-lg">
+          <div className="flex flex-col gap-4 text-base font-medium text-slate-600">
+            <Link to="/#empresas" className="py-2 hover:text-slate-900 transition-colors" onClick={() => setMobileMenuOpen(false)}>Empresas</Link>
+            <Link to="/#nosotros" className="py-2 hover:text-slate-900 transition-colors" onClick={() => setMobileMenuOpen(false)}>Nosotros</Link>
+            <Link to="/#servicios" className="py-2 hover:text-slate-900 transition-colors" onClick={() => setMobileMenuOpen(false)}>Servicios</Link>
+            <Link to="/paquetes" className="py-2 text-[#FF431B] font-semibold" onClick={() => setMobileMenuOpen(false)}>Paquetes</Link>
+            <Link to="/#sucursales" className="py-2 hover:text-slate-900 transition-colors" onClick={() => setMobileMenuOpen(false)}>Sucursales</Link>
+            <button className="mt-4 bg-slate-900 flex items-center justify-center gap-2 text-white text-sm font-medium px-5 py-3 rounded-full hover:bg-slate-800 transition-colors">
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+              <span>Agendar Cita</span>
+            </button>
+          </div>
+        </div>
+      )}
+
       {/* Hero Section */}
-      <section className="bg-gradient-to-b from-slate-50 to-white py-16 px-20 text-center max-md:px-5">
-        <span className="inline-flex items-center gap-1.5 text-[#FF431B] text-xs font-medium mb-4">
+      <section className="bg-gradient-to-b from-slate-50 to-white py-10 md:py-16 px-5 md:px-20 text-center">
+        <span className="inline-flex items-center gap-1.5 text-[#FF431B] text-xs font-medium mb-3 md:mb-4">
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
           Precios actualizados 100%
         </span>
-        <h1 className="text-slate-900 text-4xl font-bold tracking-tight mb-4">
+        <h1 className="text-slate-900 text-2xl md:text-4xl font-bold tracking-tight mb-3 md:mb-4">
           Nuestros Paquetes de Salud
         </h1>
-        <p className="text-slate-500 text-base max-w-[500px] mx-auto">
+        <p className="text-slate-500 text-sm md:text-base max-w-[500px] mx-auto">
           Selecciona el estudio ideal para tu cuidado preventivo. Tecnología de punta y resultados confiables para ti y tu familia.
         </p>
       </section>
 
-      {/* Category Tabs */}
-      <section className="bg-slate-50 py-6 px-20 max-md:px-5">
+      {/* Category Tabs - Horizontal scrollable on mobile */}
+      <section className="bg-slate-50 py-4 md:py-6 px-5 md:px-20">
         <div className="max-w-[1200px] mx-auto">
-          <div className="flex items-center justify-center gap-2 flex-wrap">
-            <span className="text-slate-500 text-xs font-medium uppercase tracking-wide mr-4">Categorías:</span>
+          <div className="flex items-center gap-2 overflow-x-auto pb-2 md:pb-0 md:justify-center md:flex-wrap scrollbar-hide">
+            <span className="hidden md:block text-slate-500 text-xs font-medium uppercase tracking-wide mr-4">Categorías:</span>
             {categories.map((cat) => (
               <button
                 key={cat.id}
                 onClick={() => setActiveCategory(cat.id)}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-colors whitespace-nowrap shrink-0 ${
                   activeCategory === cat.id 
                     ? 'bg-[#FF431B] text-white' 
                     : 'bg-white text-slate-600 hover:bg-[#FF431B] hover:text-white border border-slate-200'
@@ -225,9 +265,9 @@ const Packages = () => {
       </section>
 
       {/* Packages Grid */}
-      <section className="py-12 px-20 max-md:px-5">
+      <section className="py-8 md:py-12 px-5 md:px-20">
         <div className="max-w-[1200px] mx-auto">
-          <div className="flex items-center justify-between mb-8">
+          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-2 mb-6 md:mb-8">
             <p className="text-slate-500 text-sm">
               Mostrando: <span className="font-semibold text-slate-700">{filteredPackages.length} paquetes</span>
             </p>
@@ -239,7 +279,8 @@ const Packages = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-3 gap-6 max-lg:grid-cols-2 max-md:grid-cols-1">
+          {/* Desktop Grid / Mobile List */}
+          <div className="hidden md:grid grid-cols-3 gap-6 max-lg:grid-cols-2">
             {filteredPackages.map((pkg) => (
               <div key={pkg.id} className="bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-lg transition-shadow p-7 flex flex-col h-full">
                 <span className={`inline-block ${pkg.categoryColor} text-[10px] font-bold uppercase tracking-wider px-3 py-1.5 rounded-md mb-5 w-fit`}>
@@ -283,23 +324,80 @@ const Packages = () => {
               </div>
             ))}
           </div>
+
+          {/* Mobile Cards - Compact Accordion Style */}
+          <div className="md:hidden space-y-3">
+            {filteredPackages.map((pkg) => {
+              const isExpanded = expandedPackages.includes(pkg.id);
+              return (
+                <div key={pkg.id} className="bg-white rounded-xl border border-slate-100 shadow-sm overflow-hidden">
+                  {/* Header - Always Visible */}
+                  <button 
+                    onClick={() => togglePackageExpand(pkg.id)}
+                    className="w-full p-4 flex items-center justify-between text-left"
+                  >
+                    <div className="flex-1">
+                      <span className={`inline-block ${pkg.categoryColor} text-[9px] font-bold uppercase tracking-wider px-2 py-1 rounded mb-2`}>
+                        {pkg.category}
+                      </span>
+                      <h3 className="text-slate-900 text-base font-semibold">
+                        {pkg.title}
+                      </h3>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <span className="text-[#FF431B] text-lg font-bold">{pkg.price}</span>
+                      <ChevronDown 
+                        className={`w-5 h-5 text-slate-400 transition-transform ${isExpanded ? 'rotate-180' : ''}`} 
+                      />
+                    </div>
+                  </button>
+                  
+                  {/* Expandable Content */}
+                  {isExpanded && (
+                    <div className="px-4 pb-4 border-t border-slate-100 pt-3">
+                      <p className="text-slate-400 text-[10px] font-semibold uppercase tracking-wider mb-3">
+                        Incluye:
+                      </p>
+                      <div className="space-y-2 mb-4">
+                        {pkg.items.map((item, itemIndex) => (
+                          <div key={itemIndex} className="flex items-start gap-2 text-sm text-slate-600">
+                            <svg className="w-4 h-4 shrink-0 mt-0.5" viewBox="0 0 20 20" fill="none">
+                              <circle cx="10" cy="10" r="9" stroke="#22c55e" strokeWidth="2" />
+                              <path d="M6 10l2.5 2.5L14 7" stroke="#22c55e" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                            </svg>
+                            <span>{item}</span>
+                          </div>
+                        ))}
+                      </div>
+                      <button className="w-full flex items-center justify-center gap-2 bg-[#FF431B] text-white text-sm font-semibold py-3 rounded-lg hover:bg-[#e63a17] transition-colors">
+                        <span>Solicitar Info</span>
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                        </svg>
+                      </button>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
         </div>
       </section>
 
       {/* Contact Section */}
-      <section className="bg-white py-24 px-20 max-md:px-5">
+      <section className="bg-white py-12 md:py-24 px-5 md:px-20">
         <div className="max-w-[800px] mx-auto">
-          <div className="text-center mb-10">
+          <div className="text-center mb-8 md:mb-10">
             <span className="text-[#FF431B] text-xs font-semibold uppercase tracking-wider">
               Contáctanos
             </span>
-            <h2 className="text-slate-900 text-2xl font-bold tracking-tight mt-3">
+            <h2 className="text-slate-900 text-xl md:text-2xl font-bold tracking-tight mt-3">
               Agenda tu cita o solicita informes
             </h2>
           </div>
           
-          <form className="bg-white rounded-3xl shadow-xl border border-slate-100 p-10 max-md:p-6">
-            <div className="grid grid-cols-2 gap-6 mb-6 max-md:grid-cols-1">
+          <form className="bg-white rounded-2xl md:rounded-3xl shadow-xl border border-slate-100 p-5 md:p-10">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-4 md:mb-6">
               <div>
                 <label className="block text-sm font-medium text-slate-700 mb-2">
                   Nombre completo
@@ -323,7 +421,7 @@ const Packages = () => {
               </div>
             </div>
             
-            <div className="grid grid-cols-2 gap-6 mb-6 max-md:grid-cols-1">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-4 md:mb-6">
               <div>
                 <label className="block text-sm font-medium text-slate-700 mb-2">
                   Correo Electrónico
@@ -347,7 +445,7 @@ const Packages = () => {
               </div>
             </div>
             
-            <div className="mb-8">
+            <div className="mb-6 md:mb-8">
               <label className="block text-sm font-medium text-slate-700 mb-2">
                 Mensaje
               </label>
@@ -377,13 +475,13 @@ const Packages = () => {
 
       {/* Footer */}
       <footer className="bg-white border-t border-slate-200">
-        <div className="max-w-[1200px] mx-auto px-20 py-16 max-md:px-5">
-          <div className="grid grid-cols-4 gap-12 max-md:grid-cols-2 max-sm:grid-cols-1">
-            <div>
+        <div className="max-w-[1200px] mx-auto px-5 md:px-20 py-10 md:py-16">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+            <div className="col-span-2 md:col-span-1">
               <div className="mb-4 px-2">
                 <img
                   src={logo}
-                  className="h-12 object-contain"
+                  className="h-10 md:h-12 object-contain"
                   alt="IMEDILAB Logo"
                 />
               </div>
@@ -393,8 +491,8 @@ const Packages = () => {
             </div>
             
             <div>
-              <h3 className="text-slate-900 text-base font-semibold mb-5">Servicios</h3>
-              <nav className="flex flex-col gap-3 text-sm text-slate-500">
+              <h3 className="text-slate-900 text-base font-semibold mb-4 md:mb-5">Servicios</h3>
+              <nav className="flex flex-col gap-2 md:gap-3 text-sm text-slate-500">
                 <a href="#" className="hover:text-slate-900 transition-colors">Análisis Clínicos</a>
                 <a href="#" className="hover:text-slate-900 transition-colors">Rayos X</a>
                 <a href="#" className="hover:text-slate-900 transition-colors">Ultrasonidos</a>
@@ -403,8 +501,8 @@ const Packages = () => {
             </div>
             
             <div>
-              <h3 className="text-slate-900 text-base font-semibold mb-5">Empresa</h3>
-              <nav className="flex flex-col gap-3 text-sm text-slate-500">
+              <h3 className="text-slate-900 text-base font-semibold mb-4 md:mb-5">Empresa</h3>
+              <nav className="flex flex-col gap-2 md:gap-3 text-sm text-slate-500">
                 <a href="#" className="hover:text-slate-900 transition-colors">Nosotros</a>
                 <a href="#" className="hover:text-slate-900 transition-colors">Sucursales</a>
                 <a href="#" className="hover:text-slate-900 transition-colors">Médicos</a>
@@ -412,9 +510,9 @@ const Packages = () => {
               </nav>
             </div>
             
-            <div>
-              <h3 className="text-slate-900 text-base font-semibold mb-5">Legal</h3>
-              <nav className="flex flex-col gap-3 text-sm text-slate-500">
+            <div className="col-span-2 md:col-span-1">
+              <h3 className="text-slate-900 text-base font-semibold mb-4 md:mb-5">Legal</h3>
+              <nav className="flex flex-col gap-2 md:gap-3 text-sm text-slate-500">
                 <span>Aviso de Funcionamiento: <span className="text-slate-700">#234567</span></span>
                 <span>Resp. Sanitario: <span className="text-slate-700">Q.F.B. 12345</span></span>
                 <a href="#" className="hover:text-slate-900 transition-colors">Aviso de Privacidad</a>
@@ -424,9 +522,9 @@ const Packages = () => {
         </div>
         
         <div className="border-t border-slate-200">
-          <div className="max-w-[1200px] mx-auto px-20 py-6 max-md:px-5">
-            <div className="flex items-center justify-between flex-wrap gap-4">
-              <p className="text-slate-400 text-sm">
+          <div className="max-w-[1200px] mx-auto px-5 md:px-20 py-4 md:py-6">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+              <p className="text-slate-400 text-xs md:text-sm text-center md:text-left">
                 © 2026 IMEDILAB. Todos los derechos reservados. | Diseñado y Desarrollado por <a href="#" className="text-slate-500 underline hover:text-slate-700">Búho Solutions.</a>
               </p>
               <div className="flex items-center gap-5">
