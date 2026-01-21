@@ -240,8 +240,8 @@ const Packages = () => {
 
           <div className="grid grid-cols-3 gap-6 max-lg:grid-cols-2 max-md:grid-cols-1">
             {filteredPackages.map((pkg) => (
-              <div key={pkg.id} className="bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-lg transition-shadow p-7">
-                <span className={`inline-block ${pkg.categoryColor} text-[10px] font-bold uppercase tracking-wider px-3 py-1.5 rounded-md mb-5`}>
+              <div key={pkg.id} className="bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-lg transition-shadow p-7 flex flex-col h-full">
+                <span className={`inline-block ${pkg.categoryColor} text-[10px] font-bold uppercase tracking-wider px-3 py-1.5 rounded-md mb-5 w-fit`}>
                   {pkg.category}
                 </span>
                 
@@ -254,7 +254,7 @@ const Packages = () => {
                   <span className="text-slate-400 text-sm font-medium">MXN</span>
                 </div>
                 
-                <div className="mb-6">
+                <div className="flex-1">
                   <p className="text-slate-400 text-[11px] font-semibold uppercase tracking-wider mb-4">
                     Incluye:
                   </p>
@@ -270,12 +270,14 @@ const Packages = () => {
                   </div>
                 </div>
                 
-                <button className="w-full flex items-center justify-center gap-2 bg-white border border-slate-200 text-slate-700 text-sm font-semibold py-3.5 rounded-xl hover:bg-slate-50 hover:border-slate-300 transition-all">
-                  <span>Solicitar Info</span>
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
-                </button>
+                <div className="mt-8 pt-6 border-t border-slate-100">
+                  <button className="w-full flex items-center justify-center gap-2 bg-white border border-slate-200 text-slate-700 text-sm font-semibold py-3.5 rounded-xl hover:bg-slate-50 hover:border-slate-300 transition-all">
+                    <span>Solicitar Info</span>
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                  </button>
+                </div>
               </div>
             ))}
           </div>
