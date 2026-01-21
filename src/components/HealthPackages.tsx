@@ -7,105 +7,87 @@ const HealthPackages = () => {
       categoryColor: "bg-blue-50 text-blue-600",
       title: "Check Up Total Salud",
       price: "$1,403",
-      currency: "MXN",
       items: ["BHC", "QS47", "EGO"],
-      iconColor: "27f3af0d9f3470918ec1aa09ca99ecefc872d453"
     },
     {
-      category: "Mujeres",
-      categoryColor: "bg-[rgba(255,225,241,1)] text-[rgba(238,90,156,1)]",
+      category: "MUJERES",
+      categoryColor: "bg-pink-50 text-pink-500",
       title: "Perfil Ginecológico",
       price: "$480",
-      currency: "MXN",
       items: ["Estradiol", "Hormona Folículo Estimulante", "Prolactina", "Testosterona Total", "Progesterona y Hormona luteinizante"],
-      iconColor: "e07320d27ada1dfca4eaf0a10be31dddc1ac64d0"
     },
     {
-      category: "Adulto Mayor",
+      category: "ADULTO MAYOR",
       categoryColor: "bg-purple-50 text-purple-600",
       title: "Paquete Adulto Mayor",
       price: "$1,954",
-      currency: "MXN",
       items: ["RX Tórax", "ECG", "BHC", "EGO", "QS6"],
-      iconColor: "e07320d27ada1dfca4eaf0a10be31dddc1ac64d0"
     }
   ];
 
   return (
-    <section id="paquetes" className="bg-white w-full max-md:max-w-full">
-      <div className="bg-white flex w-full flex-col items-stretch justify-center px-20 py-[100px] max-md:max-w-full max-md:px-5">
-        <div className="flex flex-col items-center max-md:max-w-full">
-          <h2 className="text-gray-900 text-3xl font-bold leading-[1.2] tracking-[-0.75px] text-center">
+    <section id="paquetes" className="bg-white py-24 px-20 max-md:px-5">
+      <div className="max-w-[1200px] mx-auto">
+        {/* Header */}
+        <div className="text-center mb-14">
+          <h2 className="text-slate-900 text-2xl font-bold tracking-tight mb-3">
             Paquetes de Salud
           </h2>
-          <p className="text-gray-600 text-base font-normal text-center mt-[23px]">
+          <p className="text-slate-500 text-base">
             Chequeos preventivos diseñados para tu bienestar.
           </p>
-          
-          <div className="self-stretch mt-[66px] max-md:max-w-full max-md:mt-10">
-            <div className="gap-5 flex max-md:flex-col max-md:items-stretch">
-              {packages.map((pkg, index) => (
-                <article key={index} className="w-[33%] max-md:w-full max-md:ml-0">
-                  <div className="bg-white shadow-[0px_1px_2px_rgba(0,0,0,0.05)] border-gray-100 border flex w-full flex-col mx-auto px-[25px] py-[26px] rounded-2xl border-solid max-md:mt-7 max-md:px-5">
-                    <div className={`${pkg.categoryColor} flex flex-col items-stretch text-[10px] font-bold whitespace-nowrap uppercase tracking-[0.5px] justify-center px-2.5 py-2 rounded-md`}>
-                      <div>{pkg.category}</div>
+        </div>
+        
+        {/* Packages Grid */}
+        <div className="grid grid-cols-3 gap-5 mb-14 max-md:grid-cols-1">
+          {packages.map((pkg, index) => (
+            <div key={index} className="bg-white rounded-2xl border border-slate-100 p-6 shadow-sm">
+              <span className={`inline-block ${pkg.categoryColor} text-[10px] font-bold uppercase tracking-wider px-2.5 py-1.5 rounded-md mb-4`}>
+                {pkg.category}
+              </span>
+              
+              <h3 className="text-slate-900 text-lg font-bold mb-3">
+                {pkg.title}
+              </h3>
+              
+              <div className="flex items-baseline gap-1 mb-4">
+                <span className="text-slate-900 text-2xl font-bold">{pkg.price}</span>
+                <span className="text-slate-400 text-xs">MXN</span>
+              </div>
+              
+              <div className="border-t border-slate-100 pt-4 mb-6">
+                <p className="text-slate-400 text-[10px] font-bold uppercase tracking-wider mb-3">
+                  Incluye:
+                </p>
+                <div className="space-y-2">
+                  {pkg.items.map((item, itemIndex) => (
+                    <div key={itemIndex} className="flex items-start gap-2 text-xs text-slate-600">
+                      <svg className="w-3.5 h-3.5 text-green-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span>{item}</span>
                     </div>
-                    
-                    <h3 className="text-gray-900 text-lg font-bold leading-none mt-[19px]">
-                      {pkg.title}
-                    </h3>
-                    
-                    <div className="flex items-stretch gap-1.5 whitespace-nowrap leading-none mt-4">
-                      <div className="text-gray-900 text-2xl font-bold grow">
-                        {pkg.price}
-                      </div>
-                      <div className="text-gray-400 text-xs font-medium my-auto">
-                        {pkg.currency}
-                      </div>
-                    </div>
-                    
-                    <div className="bg-gray-100 self-stretch flex shrink-0 h-px mt-[19px]" />
-                    
-                    <div className="text-gray-400 text-[10px] font-bold tracking-[1px] uppercase mt-[19px]">
-                      Incluye:
-                    </div>
-                    
-                    <div className="space-y-2.5 mt-[18px]">
-                      {pkg.items.map((item, itemIndex) => (
-                        <div key={itemIndex} className="flex items-stretch gap-2 text-xs text-gray-600 font-medium leading-none">
-                          <img
-                            src={`https://api.builder.io/api/v1/image/assets/413fd2a717aa45d7a34f3279e1fd598d/${pkg.iconColor}?placeholderIfAbsent=true`}
-                            className="aspect-[1] object-contain w-3.5 shrink-0"
-                            alt="Check icon"
-                          />
-                          <div className={item.length > 20 ? "basis-auto" : ""}>{item}</div>
-                        </div>
-                      ))}
-                    </div>
-                    
-                    <button className="bg-white border border self-stretch flex w-full flex-col items-center text-xs text-gray-700 font-semibold text-center leading-none justify-center mt-[72px] px-[70px] py-3.5 rounded-xl border-solid max-md:mt-10 max-md:px-5 hover:bg-gray-50 transition-colors">
-                      <div className="flex w-[94px] items-stretch gap-2">
-                        <div className="grow">Solicitar Info</div>
-                        <img
-                          src="https://api.builder.io/api/v1/image/assets/413fd2a717aa45d7a34f3279e1fd598d/d2ed002fbe86604ad5e6131f6592ed5103aad8eb?placeholderIfAbsent=true"
-                          className="aspect-[1] object-contain w-3.5 shrink-0"
-                          alt="Arrow icon"
-                        />
-                      </div>
-                    </button>
-                  </div>
-                </article>
-              ))}
+                  ))}
+                </div>
+              </div>
+              
+              <button className="w-full flex items-center justify-center gap-2 bg-white border border-slate-200 text-slate-700 text-xs font-semibold py-3 rounded-xl hover:bg-slate-50 transition-colors">
+                <span>Solicitar Info</span>
+                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
             </div>
-          </div>
-          
-          <button className="bg-[rgba(255,67,27,1)] shadow-[0px_10px_15px_-3px_rgba(254,215,170,1)] flex w-[252px] max-w-full items-stretch gap-[13px] overflow-hidden text-lg text-white font-semibold text-center leading-loose mt-[82px] px-[33px] py-[19px] rounded-full max-md:mt-10 max-md:px-5 hover:bg-[rgba(255,67,27,0.9)] transition-colors">
-            <div className="grow">Ver Más Paquetes</div>
-            <img
-              src="https://api.builder.io/api/v1/image/assets/413fd2a717aa45d7a34f3279e1fd598d/e955443020140c2377cc23fd64f0cbc73cc294e3?placeholderIfAbsent=true"
-              className="aspect-[1] object-contain w-[18px] shrink-0"
-              alt="Arrow icon"
-            />
+          ))}
+        </div>
+        
+        {/* CTA Button */}
+        <div className="text-center">
+          <button className="inline-flex items-center gap-3 bg-[#FF431B] text-white text-lg font-semibold px-8 py-4 rounded-full shadow-lg shadow-orange-200 hover:bg-[#e63a17] transition-colors">
+            <span>Ver Más Paquetes</span>
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
           </button>
         </div>
       </div>
