@@ -68,21 +68,21 @@ const Hero = () => {
         )}
         
         {/* Hero Content */}
-        <main className="relative flex-1 flex items-center justify-center px-5 md:px-8 py-10 md:py-0">
-          <div className="w-full max-w-[1400px] mx-auto">
-            <div className="flex flex-col md:flex-row items-center justify-between gap-8 md:gap-12">
+        <main className="relative flex-1 flex items-center justify-center px-5 md:px-16 lg:px-24 py-10 md:py-0">
+          <div className="w-full max-w-[1300px] mx-auto">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-8 md:gap-16 lg:gap-20">
               {/* Left Content */}
-              <div className="flex-1 max-w-[580px] text-center md:text-left order-1 md:order-1">
+              <div className="flex-1 max-w-[540px] text-center md:text-left order-1 md:order-1">
                 <div className="inline-flex items-center gap-2 bg-orange-50 border border-orange-200/50 text-[#FF431B] text-xs font-medium px-4 py-1.5 rounded-full mb-4 md:mb-6">
                   <span className="w-2 h-2 bg-[#FF431B] rounded-full"></span>
                   Tecnología médica avanzada
                 </div>
                 
-                <h1 className="text-3xl md:text-[56px] font-semibold leading-[1.15] md:leading-[1.1] tracking-tight text-slate-900 mb-4 md:mb-6">
+                <h1 className="text-3xl md:text-[48px] lg:text-[52px] font-semibold leading-[1.15] md:leading-[1.12] tracking-tight text-slate-900 mb-4 md:mb-6">
                   Precisión que inspira <span className="text-[#FF431B]">confianza.</span>
                 </h1>
                 
-                <p className="text-slate-500 text-base md:text-lg leading-relaxed mb-6 md:mb-8 max-w-[480px] mx-auto md:mx-0">
+                <p className="text-slate-500 text-base md:text-lg leading-relaxed mb-6 md:mb-8 max-w-[440px] mx-auto md:mx-0">
                   Resultados clínicos exactos, atención humana y la tecnología más moderna para el cuidado de tu salud y el de tu familia.
                 </p>
                 
@@ -112,7 +112,7 @@ const Hero = () => {
               <div className="flex-1 flex justify-center md:justify-end order-2 md:order-2 w-full md:w-auto">
                 <div className="relative w-full max-w-[320px] md:max-w-none">
                   {/* Main Orange Rectangle */}
-                  <div className="bg-[#FF431B] rounded-2xl w-full md:w-[520px] h-[280px] md:h-[500px] relative">
+                  <div className="bg-[#FF431B] rounded-2xl w-full md:w-[420px] lg:w-[480px] h-[280px] md:h-[440px] lg:h-[480px] relative">
                     {/* Floating Card */}
                     <div className="absolute -bottom-6 left-4 right-4 bg-white rounded-xl shadow-xl border border-slate-100 p-3 md:p-4 flex items-center gap-3 z-10">
                       <div className="w-8 md:w-10 h-8 md:h-10 bg-orange-100 rounded-full flex items-center justify-center shrink-0">
