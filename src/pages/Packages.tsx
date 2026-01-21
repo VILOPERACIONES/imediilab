@@ -375,70 +375,77 @@ const Packages = () => {
       </section>
 
       {/* Footer */}
-      <footer className="bg-slate-900 text-white py-16 px-20 max-md:px-5">
-        <div className="max-w-[1200px] mx-auto">
-          <div className="grid grid-cols-4 gap-10 mb-12 max-md:grid-cols-2 max-sm:grid-cols-1">
-            <div className="col-span-1">
-              <img
-                src="https://api.builder.io/api/v1/image/assets/413fd2a717aa45d7a34f3279e1fd598d/64f76a02b1e881e887195248f8d2113db3a5cae9?placeholderIfAbsent=true"
-                className="h-8 object-contain brightness-0 invert mb-4"
-                alt="IMEDILAB Logo"
-              />
-              <p className="text-slate-400 text-sm leading-relaxed max-w-[240px]">
-                Precisión que inspira confianza. Más de 15 años cuidando la salud de tu familia con tecnología de punta.
+      <footer className="bg-white border-t border-slate-200">
+        <div className="max-w-[1200px] mx-auto px-20 py-16 max-md:px-5">
+          <div className="grid grid-cols-4 gap-12 max-md:grid-cols-2 max-sm:grid-cols-1">
+            <div>
+              <div className="mb-4">
+                <div className="text-3xl font-bold text-slate-800 tracking-tight">
+                  <span className="text-[#FF431B]">i</span>medi<span className="text-[#FF431B]">l</span>ab
+                </div>
+                <div className="text-[#FF431B] text-xs font-medium mt-1">
+                  Laboratorio Clínico y de Gabinete
+                </div>
+              </div>
+              <p className="text-slate-500 text-sm leading-relaxed">
+                Innovación y cuidado al servicio de tu salud. Laboratorio certificado con tecnología de punta.
               </p>
             </div>
             
             <div>
-              <h3 className="text-sm font-semibold uppercase tracking-wider mb-4">Servicios</h3>
-              <nav className="flex flex-col gap-2.5 text-sm text-slate-400">
-                <a href="#" className="hover:text-white transition-colors">Análisis Clínicos</a>
-                <a href="#" className="hover:text-white transition-colors">Rayos X</a>
-                <a href="#" className="hover:text-white transition-colors">Ultrasonido</a>
-                <a href="#" className="hover:text-white transition-colors">Salud Ocupacional</a>
+              <h3 className="text-slate-900 text-base font-semibold mb-5">Servicios</h3>
+              <nav className="flex flex-col gap-3 text-sm text-slate-500">
+                <a href="#" className="hover:text-slate-900 transition-colors">Análisis Clínicos</a>
+                <a href="#" className="hover:text-slate-900 transition-colors">Rayos X</a>
+                <a href="#" className="hover:text-slate-900 transition-colors">Ultrasonidos</a>
+                <a href="#" className="hover:text-slate-900 transition-colors">Salud Ocupacional</a>
               </nav>
             </div>
             
             <div>
-              <h3 className="text-sm font-semibold uppercase tracking-wider mb-4">Empresa</h3>
-              <nav className="flex flex-col gap-2.5 text-sm text-slate-400">
-                <a href="#" className="hover:text-white transition-colors">Nosotros</a>
-                <a href="#" className="hover:text-white transition-colors">Sucursales</a>
-                <a href="#" className="hover:text-white transition-colors">Vacantes</a>
-                <a href="#" className="hover:text-white transition-colors">Contacto</a>
+              <h3 className="text-slate-900 text-base font-semibold mb-5">Empresa</h3>
+              <nav className="flex flex-col gap-3 text-sm text-slate-500">
+                <a href="#" className="hover:text-slate-900 transition-colors">Nosotros</a>
+                <a href="#" className="hover:text-slate-900 transition-colors">Sucursales</a>
+                <a href="#" className="hover:text-slate-900 transition-colors">Médicos</a>
+                <a href="#" className="hover:text-slate-900 transition-colors">Contacto</a>
               </nav>
             </div>
             
             <div>
-              <h3 className="text-sm font-semibold uppercase tracking-wider mb-4">Legal</h3>
-              <nav className="flex flex-col gap-2.5 text-sm text-slate-400">
-                <a href="#" className="hover:text-white transition-colors">Aviso de Privacidad</a>
-                <a href="#" className="hover:text-white transition-colors">Términos y Condiciones</a>
-                <a href="#" className="hover:text-white transition-colors">Política de Cookies</a>
+              <h3 className="text-slate-900 text-base font-semibold mb-5">Legal</h3>
+              <nav className="flex flex-col gap-3 text-sm text-slate-500">
+                <span>Aviso de Funcionamiento: <span className="text-slate-700">#234567</span></span>
+                <span>Resp. Sanitario: <span className="text-slate-700">Q.F.B. 12345</span></span>
+                <a href="#" className="hover:text-slate-900 transition-colors">Aviso de Privacidad</a>
               </nav>
             </div>
           </div>
-          
-          <div className="border-t border-slate-800 pt-8 flex items-center justify-between flex-wrap gap-4">
-            <p className="text-slate-500 text-sm">
-              © 2024 IMEDILAB. Todos los derechos reservados.
-            </p>
-            <div className="flex items-center gap-4">
-              <a href="#" className="text-slate-400 hover:text-white transition-colors">
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z"/>
-                </svg>
-              </a>
-              <a href="#" className="text-slate-400 hover:text-white transition-colors">
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                </svg>
-              </a>
-              <a href="#" className="text-slate-400 hover:text-white transition-colors">
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-                </svg>
-              </a>
+        </div>
+        
+        <div className="border-t border-slate-200">
+          <div className="max-w-[1200px] mx-auto px-20 py-6 max-md:px-5">
+            <div className="flex items-center justify-between flex-wrap gap-4">
+              <p className="text-slate-400 text-sm">
+                © 2026 IMEDILAB. Todos los derechos reservados. | Diseñado y Desarrollado por <a href="#" className="text-slate-500 underline hover:text-slate-700">Búho Solutions.</a>
+              </p>
+              <div className="flex items-center gap-5">
+                <a href="#" className="text-slate-400 hover:text-slate-600 transition-colors">
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z"/>
+                  </svg>
+                </a>
+                <a href="#" className="text-slate-400 hover:text-slate-600 transition-colors">
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                  </svg>
+                </a>
+                <a href="#" className="text-slate-400 hover:text-slate-600 transition-colors">
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                  </svg>
+                </a>
+              </div>
             </div>
           </div>
         </div>
