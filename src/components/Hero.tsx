@@ -34,21 +34,21 @@ const Hero = () => {
         </header>
         
         {/* Hero Content */}
-        <main className="relative flex-1 flex items-center px-20 max-md:px-5">
-          <div className="w-full max-w-[1200px] mx-auto">
-            <div className="flex items-center gap-16 max-md:flex-col">
+        <main className="relative flex-1 flex items-center justify-center px-8 max-md:px-5">
+          <div className="w-full max-w-[1400px] mx-auto">
+            <div className="flex items-center justify-between gap-12 max-md:flex-col">
               {/* Left Content */}
-              <div className="flex-1 max-w-[520px]">
+              <div className="flex-1 max-w-[580px]">
                 <div className="inline-flex items-center gap-2 bg-orange-50 border border-orange-200/50 text-[#FF431B] text-xs font-medium px-4 py-1.5 rounded-full mb-6">
                   <span className="w-2 h-2 bg-[#FF431B] rounded-full"></span>
                   Tecnología médica avanzada
                 </div>
                 
-                <h1 className="text-[52px] font-semibold leading-[1.1] tracking-tight text-slate-900 mb-6">
+                <h1 className="text-[56px] font-semibold leading-[1.1] tracking-tight text-slate-900 mb-6">
                   Precisión que inspira<br /><span className="text-[#FF431B]">confianza.</span>
                 </h1>
                 
-                <p className="text-slate-500 text-lg leading-relaxed mb-8 max-w-[440px]">
+                <p className="text-slate-500 text-lg leading-relaxed mb-8 max-w-[480px]">
                   Resultados clínicos exactos, atención humana y la tecnología más moderna para el cuidado de tu salud y el de tu familia.
                 </p>
                 
@@ -75,10 +75,10 @@ const Hero = () => {
               </div>
               
               {/* Right Content - Hero Image Card */}
-              <div className="flex-1 relative max-md:mt-10">
+              <div className="flex-1 flex justify-end max-md:justify-center max-md:mt-10">
                 <div className="relative">
                   {/* Main Orange Rectangle */}
-                  <div className="bg-[#FF431B] rounded-2xl w-[500px] h-[480px] relative max-md:w-full">
+                  <div className="bg-[#FF431B] rounded-2xl w-[520px] h-[500px] relative max-md:w-full">
                     {/* Floating Card */}
                     <div className="absolute -bottom-6 left-4 right-4 bg-white rounded-xl shadow-xl border border-slate-100 p-4 flex items-center gap-3 z-10">
                       <div className="w-10 h-10 bg-orange-100 rounded-full flex items-center justify-center">
