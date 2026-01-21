@@ -212,8 +212,8 @@ const Packages = () => {
                 onClick={() => setActiveCategory(cat.id)}
                 className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
                   activeCategory === cat.id 
-                    ? 'bg-slate-900 text-white' 
-                    : 'bg-white text-slate-600 hover:bg-slate-100 border border-slate-200'
+                    ? 'bg-[#FF431B] text-white' 
+                    : 'bg-white text-slate-600 hover:bg-[#FF431B] hover:text-white border border-slate-200'
                 }`}
               >
                 {cat.label}
@@ -261,8 +261,9 @@ const Packages = () => {
                   <div className="space-y-3">
                     {pkg.items.map((item, itemIndex) => (
                       <div key={itemIndex} className="flex items-start gap-2.5 text-sm text-slate-600">
-                        <svg className="w-4 h-4 text-emerald-500 mt-0.5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                        <svg className="w-5 h-5 shrink-0" viewBox="0 0 20 20" fill="none">
+                          <circle cx="10" cy="10" r="9" stroke="#22c55e" strokeWidth="2" />
+                          <path d="M6 10l2.5 2.5L14 7" stroke="#22c55e" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
                         <span>{item}</span>
                       </div>
@@ -358,7 +359,7 @@ const Packages = () => {
             
             <button
               type="submit"
-              className="w-full bg-[#FF431B] text-white font-semibold py-4 rounded-lg flex items-center justify-center gap-2 hover:bg-[#e63a17] transition-colors"
+              className="w-full bg-slate-900 text-white font-semibold py-4 rounded-lg flex items-center justify-center gap-2 hover:bg-slate-800 transition-colors"
             >
               <span>Enviar Mensaje</span>
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
