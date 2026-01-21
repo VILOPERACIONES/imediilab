@@ -238,31 +238,31 @@ const Packages = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-3 gap-5 max-lg:grid-cols-2 max-md:grid-cols-1">
+          <div className="grid grid-cols-3 gap-6 max-lg:grid-cols-2 max-md:grid-cols-1">
             {filteredPackages.map((pkg) => (
-              <div key={pkg.id} className="bg-white rounded-xl border border-slate-200 p-6 hover:shadow-md transition-shadow">
-                <span className={`inline-block ${pkg.categoryColor} text-[10px] font-bold uppercase tracking-wider px-2.5 py-1.5 rounded-md mb-4`}>
+              <div key={pkg.id} className="bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-lg transition-shadow p-7">
+                <span className={`inline-block ${pkg.categoryColor} text-[10px] font-bold uppercase tracking-wider px-3 py-1.5 rounded-md mb-5`}>
                   {pkg.category}
                 </span>
                 
-                <h3 className="text-slate-900 text-lg font-bold mb-3">
+                <h3 className="text-slate-900 text-xl font-bold mb-4">
                   {pkg.title}
                 </h3>
                 
-                <div className="flex items-baseline gap-1 mb-4">
-                  <span className="text-slate-900 text-2xl font-bold">{pkg.price}</span>
-                  <span className="text-slate-400 text-xs">MXN</span>
+                <div className="flex items-baseline gap-1.5 mb-6">
+                  <span className="text-slate-900 text-3xl font-bold">{pkg.price}</span>
+                  <span className="text-slate-400 text-sm font-medium">MXN</span>
                 </div>
                 
-                <div className="border-t border-slate-100 pt-4 mb-6">
-                  <p className="text-slate-400 text-[10px] font-bold uppercase tracking-wider mb-3">
+                <div className="mb-6">
+                  <p className="text-slate-400 text-[11px] font-semibold uppercase tracking-wider mb-4">
                     Incluye:
                   </p>
-                  <div className="space-y-2">
+                  <div className="space-y-3">
                     {pkg.items.map((item, itemIndex) => (
-                      <div key={itemIndex} className="flex items-start gap-2 text-xs text-slate-600">
-                        <svg className="w-3.5 h-3.5 text-green-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      <div key={itemIndex} className="flex items-start gap-2.5 text-sm text-slate-600">
+                        <svg className="w-4 h-4 text-emerald-500 mt-0.5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                         </svg>
                         <span>{item}</span>
                       </div>
@@ -270,10 +270,10 @@ const Packages = () => {
                   </div>
                 </div>
                 
-                <button className="w-full flex items-center justify-center gap-2 text-slate-700 text-xs font-semibold py-3 hover:text-[#FF431B] transition-colors">
+                <button className="w-full flex items-center justify-center gap-2 bg-white border border-slate-200 text-slate-700 text-sm font-semibold py-3.5 rounded-xl hover:bg-slate-50 hover:border-slate-300 transition-all">
                   <span>Solicitar Info</span>
-                  <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
                 </button>
               </div>
