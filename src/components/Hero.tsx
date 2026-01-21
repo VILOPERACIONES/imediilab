@@ -68,11 +68,11 @@ const Hero = () => {
         )}
         
         {/* Hero Content */}
-        <main className="relative flex-1 flex items-center justify-center px-5 md:px-12 lg:px-16 py-10 md:py-0">
-          <div className="w-full max-w-[1400px] mx-auto">
-            <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12 lg:gap-16">
+        <main className="relative flex-1 flex items-center justify-center px-5 md:px-8 lg:px-12 py-10 md:py-0">
+          <div className="w-full max-w-[1500px] mx-auto pl-0 md:pl-8 lg:pl-16">
+            <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-10 lg:gap-14">
               {/* Left Content */}
-              <div className="flex-1 max-w-[600px] text-center md:text-left">
+              <div className="flex-1 max-w-[550px] text-center md:text-left">
                 <div className="inline-flex items-center gap-2 bg-orange-50 border border-orange-200/50 text-[#FF431B] text-xs font-medium px-4 py-1.5 rounded-full mb-4 md:mb-6">
                   <span className="w-2 h-2 bg-[#FF431B] rounded-full"></span>
                   Tecnología médica avanzada
@@ -82,7 +82,7 @@ const Hero = () => {
                   Precisión que inspira <span className="text-[#FF431B]">confianza.</span>
                 </h1>
                 
-                <p className="text-slate-500 text-base md:text-lg lg:text-xl leading-relaxed mb-6 md:mb-8 max-w-[500px] mx-auto md:mx-0">
+                <p className="text-slate-500 text-base md:text-lg lg:text-xl leading-relaxed mb-6 md:mb-8 max-w-[480px] mx-auto md:mx-0">
                   Resultados clínicos exactos, atención humana y la tecnología más moderna para el cuidado de tu salud y el de tu familia.
                 </p>
                 
@@ -109,12 +109,12 @@ const Hero = () => {
               </div>
               
               {/* Right Content - Hero Image Card */}
-              <div className="flex-1 flex justify-center w-full md:w-auto">
+              <div className="flex-[1.2] flex justify-center w-full md:w-auto">
                 <div className="relative w-full max-w-[320px] md:max-w-none">
                   {/* Main Orange Rectangle */}
-                  <div className="bg-[#FF431B] rounded-2xl w-full md:w-[480px] lg:w-[540px] h-[280px] md:h-[480px] lg:h-[520px] relative">
+                  <div className="bg-[#FF431B] rounded-2xl w-full md:w-[500px] lg:w-[580px] xl:w-[620px] h-[280px] md:h-[500px] lg:h-[560px] xl:h-[580px] relative">
                     {/* Floating Card */}
-                    <div className="absolute -bottom-6 left-4 right-4 bg-white rounded-xl shadow-xl border border-slate-100 p-3 md:p-4 flex items-center gap-3 z-10">
+                    <div className="absolute -bottom-6 left-auto right-4 md:right-6 w-[calc(100%-2rem)] md:w-auto md:min-w-[220px] bg-white rounded-xl shadow-xl border border-slate-100 p-3 md:p-4 flex items-center gap-3 z-10">
                       <div className="w-8 md:w-11 h-8 md:h-11 bg-orange-100 rounded-full flex items-center justify-center shrink-0">
                         <svg className="w-4 md:w-5 h-4 md:h-5 text-[#FF431B]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
