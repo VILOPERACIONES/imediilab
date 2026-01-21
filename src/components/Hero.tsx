@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Hero = () => {
   return (
@@ -19,7 +20,7 @@ const Hero = () => {
               <a href="#empresas" className="hover:text-slate-900 transition-colors">Empresas</a>
               <a href="#nosotros" className="hover:text-slate-900 transition-colors">Nosotros</a>
               <a href="#servicios" className="hover:text-slate-900 transition-colors">Servicios</a>
-              <a href="#paquetes" className="hover:text-slate-900 transition-colors">Paquetes</a>
+              <Link to="/paquetes" className="hover:text-slate-900 transition-colors">Paquetes</Link>
               <a href="#sucursales" className="hover:text-slate-900 transition-colors">Sucursales</a>
             </div>
             <button className="bg-slate-900 flex items-center gap-2 text-white text-sm font-medium px-5 py-2.5 rounded-full hover:bg-slate-800 transition-colors">
