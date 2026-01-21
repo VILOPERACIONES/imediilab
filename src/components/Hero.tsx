@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import logo from '@/assets/imedilab-logo.svg';
 
 const Hero = () => {
   return (
@@ -12,8 +13,8 @@ const Hero = () => {
         <header className="relative bg-white/95 backdrop-blur-sm flex w-full items-center justify-center px-20 py-4 border-b border-slate-100 max-md:px-5">
           <nav className="flex w-full max-w-[1200px] items-center justify-between">
             <img
-              src="https://api.builder.io/api/v1/image/assets/413fd2a717aa45d7a34f3279e1fd598d/64f76a02b1e881e887195248f8d2113db3a5cae9?placeholderIfAbsent=true"
-              className="h-10 object-contain"
+              src={logo}
+              className="h-10 object-contain px-2"
               alt="IMEDILAB Logo"
             />
             <div className="flex items-center gap-8 text-sm font-medium text-slate-600">

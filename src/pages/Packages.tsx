@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import logo from '@/assets/imedilab-logo.svg';
 
 const packagesData = [
   {
@@ -164,8 +165,8 @@ const Packages = () => {
         <nav className="flex max-w-[1200px] mx-auto items-center justify-between">
           <Link to="/">
             <img
-              src="https://api.builder.io/api/v1/image/assets/413fd2a717aa45d7a34f3279e1fd598d/64f76a02b1e881e887195248f8d2113db3a5cae9?placeholderIfAbsent=true"
-              className="h-10 object-contain"
+              src={logo}
+              className="h-10 object-contain px-2"
               alt="IMEDILAB Logo"
             />
           </Link>
@@ -379,13 +380,12 @@ const Packages = () => {
         <div className="max-w-[1200px] mx-auto px-20 py-16 max-md:px-5">
           <div className="grid grid-cols-4 gap-12 max-md:grid-cols-2 max-sm:grid-cols-1">
             <div>
-              <div className="mb-4">
-                <div className="text-3xl font-bold text-slate-800 tracking-tight">
-                  <span className="text-[#FF431B]">i</span>medi<span className="text-[#FF431B]">l</span>ab
-                </div>
-                <div className="text-[#FF431B] text-xs font-medium mt-1">
-                  Laboratorio Clínico y de Gabinete
-                </div>
+              <div className="mb-4 px-2">
+                <img
+                  src={logo}
+                  className="h-12 object-contain"
+                  alt="IMEDILAB Logo"
+                />
               </div>
               <p className="text-slate-500 text-sm leading-relaxed">
                 Innovación y cuidado al servicio de tu salud. Laboratorio certificado con tecnología de punta.
