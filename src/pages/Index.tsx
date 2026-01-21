@@ -7,6 +7,7 @@ import HealthPackages from '@/components/HealthPackages';
 import LocationsSection from '@/components/LocationsSection';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
+import WhatsAppButton from '@/components/WhatsAppButton';
 
 const Index = () => {
   return (
@@ -19,6 +20,7 @@ const Index = () => {
       <LocationsSection />
       <ContactSection />
       <Footer />
+      <WhatsAppButton />
     </div>
   );
 };
