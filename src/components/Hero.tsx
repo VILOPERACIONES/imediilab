@@ -68,61 +68,61 @@ const Hero = () => {
         )}
         
         {/* Hero Content */}
-        <main className="relative flex-1 flex items-center justify-center px-5 md:px-16 lg:px-24 py-10 md:py-0">
-          <div className="w-full max-w-[1300px] mx-auto">
-            <div className="flex flex-col md:flex-row items-center justify-between gap-8 md:gap-16 lg:gap-20">
+        <main className="relative flex-1 flex items-center justify-center px-5 md:px-12 lg:px-16 py-10 md:py-0">
+          <div className="w-full max-w-[1400px] mx-auto">
+            <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12 lg:gap-16">
               {/* Left Content */}
-              <div className="flex-1 max-w-[540px] text-center md:text-left order-1 md:order-1">
+              <div className="flex-1 max-w-[600px] text-center md:text-left">
                 <div className="inline-flex items-center gap-2 bg-orange-50 border border-orange-200/50 text-[#FF431B] text-xs font-medium px-4 py-1.5 rounded-full mb-4 md:mb-6">
                   <span className="w-2 h-2 bg-[#FF431B] rounded-full"></span>
                   Tecnología médica avanzada
                 </div>
                 
-                <h1 className="text-3xl md:text-[48px] lg:text-[52px] font-semibold leading-[1.15] md:leading-[1.12] tracking-tight text-slate-900 mb-4 md:mb-6">
+                <h1 className="text-3xl md:text-[52px] lg:text-[58px] font-semibold leading-[1.15] md:leading-[1.1] tracking-tight text-slate-900 mb-4 md:mb-6">
                   Precisión que inspira <span className="text-[#FF431B]">confianza.</span>
                 </h1>
                 
-                <p className="text-slate-500 text-base md:text-lg leading-relaxed mb-6 md:mb-8 max-w-[440px] mx-auto md:mx-0">
+                <p className="text-slate-500 text-base md:text-lg lg:text-xl leading-relaxed mb-6 md:mb-8 max-w-[500px] mx-auto md:mx-0">
                   Resultados clínicos exactos, atención humana y la tecnología más moderna para el cuidado de tu salud y el de tu familia.
                 </p>
                 
                 <div className="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-3 mb-8 md:mb-10">
-                  <button className="w-full sm:w-auto bg-[#FF431B] flex items-center justify-center gap-2 text-white text-sm font-medium px-6 py-3.5 rounded-lg hover:bg-[#e63a17] transition-colors">
+                  <button className="w-full sm:w-auto bg-[#FF431B] flex items-center justify-center gap-2 text-white text-sm md:text-base font-medium px-7 py-4 rounded-lg hover:bg-[#e63a17] transition-colors">
                     <span>Agendar estudio</span>
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                     </svg>
                   </button>
-                  <button className="w-full sm:w-auto bg-white border border-slate-200 text-slate-700 text-sm font-medium px-6 py-3.5 rounded-lg hover:bg-slate-50 transition-colors">
+                  <button className="w-full sm:w-auto bg-white border border-slate-200 text-slate-700 text-sm md:text-base font-medium px-7 py-4 rounded-lg hover:bg-slate-50 transition-colors">
                     Ver servicios
                   </button>
                 </div>
                 
                 <div className="flex items-center justify-center md:justify-start gap-3">
                   <div className="flex -space-x-2">
-                    <img src="https://randomuser.me/api/portraits/women/44.jpg" className="w-8 h-8 rounded-full border-2 border-white object-cover" alt="Patient" />
-                    <img src="https://randomuser.me/api/portraits/men/32.jpg" className="w-8 h-8 rounded-full border-2 border-white object-cover" alt="Patient" />
-                    <img src="https://randomuser.me/api/portraits/women/68.jpg" className="w-8 h-8 rounded-full border-2 border-white object-cover" alt="Patient" />
+                    <img src="https://randomuser.me/api/portraits/women/44.jpg" className="w-9 h-9 rounded-full border-2 border-white object-cover" alt="Patient" />
+                    <img src="https://randomuser.me/api/portraits/men/32.jpg" className="w-9 h-9 rounded-full border-2 border-white object-cover" alt="Patient" />
+                    <img src="https://randomuser.me/api/portraits/women/68.jpg" className="w-9 h-9 rounded-full border-2 border-white object-cover" alt="Patient" />
                   </div>
-                  <span className="text-sm text-slate-400">+2,000 Pacientes atendidos este mes</span>
+                  <span className="text-sm md:text-base text-slate-400">+2,000 Pacientes atendidos este mes</span>
                 </div>
               </div>
               
               {/* Right Content - Hero Image Card */}
-              <div className="flex-1 flex justify-center md:justify-end order-2 md:order-2 w-full md:w-auto">
+              <div className="flex-1 flex justify-center w-full md:w-auto">
                 <div className="relative w-full max-w-[320px] md:max-w-none">
                   {/* Main Orange Rectangle */}
-                  <div className="bg-[#FF431B] rounded-2xl w-full md:w-[420px] lg:w-[480px] h-[280px] md:h-[440px] lg:h-[480px] relative">
+                  <div className="bg-[#FF431B] rounded-2xl w-full md:w-[480px] lg:w-[540px] h-[280px] md:h-[480px] lg:h-[520px] relative">
                     {/* Floating Card */}
                     <div className="absolute -bottom-6 left-4 right-4 bg-white rounded-xl shadow-xl border border-slate-100 p-3 md:p-4 flex items-center gap-3 z-10">
-                      <div className="w-8 md:w-10 h-8 md:h-10 bg-orange-100 rounded-full flex items-center justify-center shrink-0">
+                      <div className="w-8 md:w-11 h-8 md:h-11 bg-orange-100 rounded-full flex items-center justify-center shrink-0">
                         <svg className="w-4 md:w-5 h-4 md:h-5 text-[#FF431B]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
                       </div>
                       <div>
-                        <div className="text-slate-900 text-sm font-semibold">Resultados en línea</div>
-                        <div className="text-slate-500 text-xs">Consulta segura 24/7</div>
+                        <div className="text-slate-900 text-sm md:text-base font-semibold">Resultados en línea</div>
+                        <div className="text-slate-500 text-xs md:text-sm">Consulta segura 24/7</div>
                       </div>
                     </div>
                   </div>
