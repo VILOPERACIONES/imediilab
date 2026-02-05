@@ -1,40 +1,90 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { supabase, Servicio } from '@/lib/supabase';
+import { Skeleton } from '@/components/ui/skeleton';
 
 const ServicesSection = () => {
-  const services = [
+  const [services, setServices] = useState<Servicio[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  // Servicios por defecto en caso de que la base de datos esté vacía
+  const defaultServices = [
     {
-      title: "Análisis Clínicos",
-      description: "Hematología, química sanguínea, hormonas y marcadores tumorales."
+      id: 1,
+      nombre: "Análisis Clínicos",
+      descripcion: "Hematología, química sanguínea, hormonas y marcadores tumorales.",
+      activo: true
     },
     {
-      title: "Rayos X e Imagen",
-      description: "Radiografía digital de alta resolución y ultrasonidos especializados."
+      id: 2,
+      nombre: "Rayos X e Imagen",
+      descripcion: "Radiografía digital de alta resolución y ultrasonidos especializados.",
+      activo: true
     },
     {
-      title: "Cardiología",
-      description: "Electrocardiogramas en reposo interpretados por especialistas."
+      id: 3,
+      nombre: "Cardiología",
+      descripcion: "Electrocardiogramas en reposo interpretados por especialistas.",
+      activo: true
     },
     {
-      title: "Consulta Médica",
-      description: "Medicina general y preventiva para interpretación de resultados."
+      id: 4,
+      nombre: "Consulta Médica",
+      descripcion: "Medicina general y preventiva para interpretación de resultados.",
+      activo: true
     },
     {
-      title: "Audiometrías",
-      description: "Estudios de capacidad auditiva en cabina sonoamortiguada."
+      id: 5,
+      nombre: "Audiometrías",
+      descripcion: "Estudios de capacidad auditiva en cabina sonoamortiguada.",
+      activo: true
     },
     {
-      title: "Espirometrías",
-      description: "Evaluación de la función pulmonar con equipos de última generación."
+      id: 6,
+      nombre: "Espirometrías",
+      descripcion: "Evaluación de la función pulmonar con equipos de última generación.",
+      activo: true
     },
     {
-      title: "Odontología",
-      description: "Diagnóstico dental básico y radiografías periapicales."
+      id: 7,
+      nombre: "Odontología",
+      descripcion: "Diagnóstico dental básico y radiografías periapicales.",
+      activo: true
     },
     {
-      title: "A Domicilio",
-      description: "Toma de muestras gratuita hasta tu hogar u oficina."
+      id: 8,
+      nombre: "A Domicilio",
+      descripcion: "Toma de muestras gratuita hasta tu hogar u oficina.",
+      activo: true
     }
   ];
+
+  useEffect(() => {
+    const fetchServices = async () => {
+      try {
+        const { data, error } = await supabase
+          .from('servicios')
+          .select('*')
+          .eq('activo', true)
+          .order('orden', { ascending: true });
+
+        if (error) {
+          console.error('Error fetching services:', error);
+          setServices(defaultServices);
+        } else if (data && data.length > 0) {
+          setServices(data);
+        } else {
+          setServices(defaultServices);
+        }
+      } catch (err) {
+        console.error('Error:', err);
+        setServices(defaultServices);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchServices();
+  }, []);
 
   return (
     <section id="servicios" className="bg-slate-50/50 py-16 px-20 max-md:px-5">
@@ -66,16 +116,27 @@ const ServicesSection = () => {
         
         {/* Services Grid */}
         <div className="grid grid-cols-4 gap-4 mb-10 max-md:grid-cols-2 max-sm:grid-cols-1">
-          {services.map((service, index) => (
-            <div key={index} className="bg-white rounded-xl border border-amber-300 p-5">
-              <h3 className="text-slate-900 text-base font-semibold mb-2">
-                {service.title}
-              </h3>
-              <p className="text-slate-500 text-sm leading-relaxed">
-                {service.description}
-              </p>
-            </div>
-          ))}
+          {loading ? (
+            // Skeleton loading state
+            Array.from({ length: 8 }).map((_, index) => (
+              <div key={index} className="bg-white rounded-xl border border-slate-200 p-5">
+                <Skeleton className="h-5 w-3/4 mb-2" />
+                <Skeleton className="h-4 w-full mb-1" />
+                <Skeleton className="h-4 w-2/3" />
+              </div>
+            ))
+          ) : (
+            services.map((service) => (
+              <div key={service.id} className="bg-white rounded-xl border border-amber-300 p-5">
+                <h3 className="text-slate-900 text-base font-semibold mb-2">
+                  {service.nombre}
+                </h3>
+                <p className="text-slate-500 text-sm leading-relaxed">
+                  {service.descripcion}
+                </p>
+              </div>
+            ))
+          )}
         </div>
         
         {/* CTA Link */}
