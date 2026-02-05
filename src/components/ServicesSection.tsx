@@ -13,16 +13,16 @@ const ServicesSection = () => {
       try {
         const { data, error } = await supabase
           .from('servicios')
-          .select('*')
-          .eq('activo', true)
-          .order('orden', { ascending: true });
+          .select('*');
 
         if (error) {
           console.error('Error fetching services:', error);
           setError('No se pudieron cargar los servicios');
           setServices([]);
         } else {
-          setServices(data || []);
+          // Client-side sort to be safe against missing 'orden' column
+          const sortedData = (data || []).sort((a, b) => (a.orden || 0) - (b.orden || 0));
+          setServices(sortedData);
         }
       } catch (err) {
         console.error('Error:', err);
@@ -60,10 +60,7 @@ const ServicesSection = () => {
     );
   }
 
-  // Si no hay servicios, no mostrar la sección
-  if (services.length === 0) {
-    return null;
-  }
+  // Si no hay servicios, mostramos mensaje
 
   return (
     <section id="servicios" className="bg-slate-50/50 py-16 px-20 max-md:px-5">
@@ -84,7 +81,7 @@ const ServicesSection = () => {
               Servicio a Domicilio GRATIS
             </span>
           </div>
-          
+
           <h2 className="text-slate-900 text-2xl font-semibold tracking-tight mb-3">
             Nuestros Servicios
           </h2>
@@ -92,24 +89,30 @@ const ServicesSection = () => {
             Un ecosistema integral de diagnóstico clínico y gabinete en un solo lugar.
           </p>
         </div>
-        
+
         {/* Services Grid */}
-        <div className="grid grid-cols-4 gap-4 mb-10 max-md:grid-cols-2 max-sm:grid-cols-1">
-          {services.map((service) => (
-            <div key={service.id} className="bg-white rounded-xl border border-amber-300 p-5">
-              <h3 className="text-slate-900 text-base font-semibold mb-2">
-                {service.nombre}
-              </h3>
-              <p className="text-slate-500 text-sm leading-relaxed">
-                {service.descripcion}
-              </p>
-            </div>
-          ))}
-        </div>
-        
+        {services.length > 0 ? (
+          <div className="grid grid-cols-4 gap-4 mb-10 max-md:grid-cols-2 max-sm:grid-cols-1">
+            {services.map((service) => (
+              <div key={service.id} className="bg-white rounded-xl border border-amber-300 p-5">
+                <h3 className="text-slate-900 text-base font-semibold mb-2">
+                  {service.nombre}
+                </h3>
+                <p className="text-slate-500 text-sm leading-relaxed">
+                  {service.descripcion}
+                </p>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="text-center py-10 bg-white rounded-xl border border-slate-200 mb-10">
+            <p className="text-slate-500 text-lg">Aún no hay servicios disponibles.</p>
+          </div>
+        )}
+
         {/* CTA Link */}
         <div className="text-center">
-          <Link 
+          <Link
             to="/servicios"
             className="inline-flex items-center gap-1 text-sm text-[#FF431B] font-medium hover:text-[#e63a17] transition-colors"
           >
