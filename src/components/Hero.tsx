@@ -111,25 +111,25 @@ const Hero = () => {
               
               {/* Right Content - Hero Image Card */}
               <div className="flex-[1.2] flex justify-center w-full md:w-auto">
-                <div className="relative w-full max-w-[320px] md:max-w-none">
+                <div className="relative w-full max-w-[320px] md:max-w-none pb-8">
                   {/* Main Hero Image */}
-                  <div className="rounded-2xl w-full md:w-[500px] lg:w-[580px] xl:w-[620px] h-[280px] md:h-[500px] lg:h-[560px] xl:h-[580px] relative overflow-hidden">
+                  <div className="rounded-2xl w-full md:w-[500px] lg:w-[580px] xl:w-[620px] h-[280px] md:h-[500px] lg:h-[560px] xl:h-[580px] overflow-hidden">
                     <img 
                       src={heroImage} 
                       alt="IMEDILAB Hero" 
                       className="w-full h-full object-cover rounded-2xl"
                     />
-                    {/* Floating Card */}
-                    <div className="absolute -bottom-6 left-auto right-4 md:right-6 w-[calc(100%-2rem)] md:w-auto md:min-w-[220px] bg-white rounded-xl shadow-xl border border-slate-100 p-3 md:p-4 flex items-center gap-3 z-10">
-                      <div className="w-8 md:w-11 h-8 md:h-11 bg-orange-100 rounded-full flex items-center justify-center shrink-0">
-                        <svg className="w-4 md:w-5 h-4 md:h-5 text-[#FF431B]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                      </div>
-                      <div>
-                        <div className="text-slate-900 text-sm md:text-base font-semibold">Resultados en línea</div>
-                        <div className="text-slate-500 text-xs md:text-sm">Consulta segura 24/7</div>
-                      </div>
+                  </div>
+                  {/* Floating Card - positioned outside the image container */}
+                  <div className="absolute bottom-0 right-4 md:right-6 w-[calc(100%-2rem)] md:w-auto md:min-w-[220px] bg-white rounded-xl shadow-xl border border-slate-100 p-3 md:p-4 flex items-center gap-3 z-10">
+                    <div className="w-8 md:w-11 h-8 md:h-11 bg-orange-100 rounded-full flex items-center justify-center shrink-0">
+                      <svg className="w-4 md:w-5 h-4 md:h-5 text-[#FF431B]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                    </div>
+                    <div>
+                      <div className="text-slate-900 text-sm md:text-base font-semibold">Resultados en línea</div>
+                      <div className="text-slate-500 text-xs md:text-sm">Consulta segura 24/7</div>
                     </div>
                   </div>
                 </div>
