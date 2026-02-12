@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import emailjs from '@emailjs/browser';
+import { EMAILJS_CONFIG } from '@/lib/emailjs';
 
 const ContactSection = () => {
   const [formData, setFormData] = useState({
@@ -8,6 +10,8 @@ const ContactSection = () => {
     interest: 'Análisis Clínicos',
     message: ''
   });
+  const [sending, setSending] = useState(false);
+  const [sent, setSent] = useState(false);
 
   const interests = [
     'Análisis Clínicos',
@@ -25,10 +29,48 @@ const ContactSection = () => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    alert('Mensaje enviado correctamente. Nos pondremos en contacto contigo pronto.');
+    setSending(true);
+
+    const templateParams = {
+      from_name: formData.fullName,
+      from_email: formData.email,
+      phone: formData.phone,
+      interest: formData.interest,
+      message: formData.message,
+    };
+
+    try {
+      // Send contact notification to you
+      await emailjs.send(
+        EMAILJS_CONFIG.SERVICE_ID,
+        EMAILJS_CONFIG.CONTACT_TEMPLATE_ID,
+        templateParams,
+        EMAILJS_CONFIG.PUBLIC_KEY
+      );
+
+      // Send auto-reply to the user
+      await emailjs.send(
+        EMAILJS_CONFIG.SERVICE_ID,
+        EMAILJS_CONFIG.AUTOREPLY_TEMPLATE_ID,
+        {
+          to_name: formData.fullName,
+          to_email: formData.email,
+          interest: formData.interest,
+        },
+        EMAILJS_CONFIG.PUBLIC_KEY
+      );
+
+      setSent(true);
+      setFormData({ fullName: '', phone: '', email: '', interest: 'Análisis Clínicos', message: '' });
+      setTimeout(() => setSent(false), 5000);
+    } catch (error) {
+      console.error('EmailJS error:', error);
+      alert('Hubo un error al enviar el mensaje. Intenta de nuevo.');
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
@@ -132,12 +174,21 @@ const ContactSection = () => {
           
           <button
             type="submit"
-            className="w-full bg-slate-900 text-white font-semibold py-4 rounded-lg flex items-center justify-center gap-2 hover:bg-slate-800 transition-colors"
+            disabled={sending}
+            className="w-full bg-slate-900 text-white font-semibold py-4 rounded-lg flex items-center justify-center gap-2 hover:bg-slate-800 transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
           >
-            <span>Enviar Mensaje</span>
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-            </svg>
+            {sent ? (
+              <span className="text-green-400">✓ Mensaje enviado correctamente</span>
+            ) : sending ? (
+              <span>Enviando...</span>
+            ) : (
+              <>
+                <span>Enviar Mensaje</span>
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                </svg>
+              </>
+            )}
           </button>
         </form>
       </div>
