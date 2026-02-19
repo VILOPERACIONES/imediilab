@@ -15,8 +15,7 @@ const Services = () => {
       try {
         const { data, error } = await supabase
           .from('servicios')
-          .select('*')
-          .order('orden', { ascending: true });
+          .select('*');
 
         if (error) {
           console.error('Error fetching services:', error);
