@@ -5,6 +5,7 @@ import { supabase, Servicio } from '@/lib/supabase';
 import { Skeleton } from '@/components/ui/skeleton';
 import Footer from '@/components/Footer';
 import WhatsAppButton from '@/components/WhatsAppButton';
+import logo from '@/assets/imedilab-logo.svg';
 
 const Services = () => {
   const [services, setServices] = useState<Servicio[]>([]);
@@ -37,14 +38,14 @@ const Services = () => {
   return (
     <div className="min-h-screen bg-slate-50">
       {/* Header */}
-      <header className="bg-white border-b border-slate-100 sticky top-0 z-50">
+      <header className="bg-white/95 backdrop-blur-sm border-b border-slate-100 sticky top-0 z-50">
         <div className="max-w-[1200px] mx-auto px-5 md:px-20 py-4 flex items-center justify-between">
           <Link to="/" className="flex items-center gap-2 text-slate-600 hover:text-slate-900 transition-colors">
             <ArrowLeft className="w-5 h-5" />
             <span className="text-sm font-medium">Volver al inicio</span>
           </Link>
-          <Link to="/" className="text-xl font-bold text-[#FF431B]">
-            IMEDILAB
+          <Link to="/">
+            <img src={logo} className="h-8 md:h-10 object-contain px-2" alt="IMEDILAB Logo" />
           </Link>
         </div>
       </header>
