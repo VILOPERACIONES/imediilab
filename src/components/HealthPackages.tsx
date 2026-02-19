@@ -74,6 +74,11 @@ const HealthPackages = () => {
     return `$${price.toLocaleString('es-MX')}`;
   };
 
+  const getWhatsAppLink = (pkg: Paquete) => {
+    const message = `Hola, me gustaría solicitar información sobre el paquete *${pkg.nombre}* (${formatPrice(pkg.precio)} MXN). ¿Me pueden dar más detalles?`;
+    return `https://wa.me/529993185571?text=${encodeURIComponent(message)}`;
+  };
+
   // Si está cargando, mostrar skeletons
   if (loading) {
     return (
@@ -155,12 +160,12 @@ const HealthPackages = () => {
                   </div>
 
                   <div className="mt-8 pt-6 border-t border-slate-100">
-                    <button className="w-full flex items-center justify-center gap-2 bg-white border border-slate-200 text-slate-700 text-sm font-semibold py-3.5 rounded-xl hover:bg-slate-50 hover:border-slate-300 transition-all">
+                    <a href={getWhatsAppLink(pkg)} target="_blank" rel="noopener noreferrer" className="w-full flex items-center justify-center gap-2 bg-white border border-slate-200 text-slate-700 text-sm font-semibold py-3.5 rounded-xl hover:bg-slate-50 hover:border-slate-300 transition-all">
                       <span>Solicitar Info</span>
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                       </svg>
-                    </button>
+                    </a>
                   </div>
                 </div>
               ))}
@@ -210,12 +215,12 @@ const HealthPackages = () => {
                             </div>
                           ))}
                         </div>
-                        <button className="w-full flex items-center justify-center gap-2 bg-[#FF431B] text-white text-sm font-semibold py-3 rounded-lg hover:bg-[#e63a17] transition-colors">
+                        <a href={getWhatsAppLink(pkg)} target="_blank" rel="noopener noreferrer" className="w-full flex items-center justify-center gap-2 bg-[#FF431B] text-white text-sm font-semibold py-3 rounded-lg hover:bg-[#e63a17] transition-colors">
                           <span>Solicitar Info</span>
                           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                           </svg>
-                        </button>
+                        </a>
                       </div>
                     )}
                   </div>
