@@ -135,12 +135,12 @@ const Packages = () => {
           </div>
 
           {/* Desktop CTA */}
-          <button className="hidden md:flex bg-slate-900 items-center gap-2 text-white text-sm font-medium px-5 py-2.5 rounded-full hover:bg-slate-800 transition-colors">
+          <a href="https://wa.me/529993185571?text=Hola%2C%20me%20gustar%C3%ADa%20agendar%20una%20cita" target="_blank" rel="noopener noreferrer" className="hidden md:flex bg-slate-900 items-center gap-2 text-white text-sm font-medium px-5 py-2.5 rounded-full hover:bg-slate-800 transition-colors">
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
             </svg>
             <span>Agendar Cita</span>
-          </button>
+          </a>
 
           {/* Mobile Menu Button */}
           <button
@@ -161,12 +161,12 @@ const Packages = () => {
             <Link to="/#servicios" className="py-2 hover:text-slate-900 transition-colors" onClick={() => setMobileMenuOpen(false)}>Servicios</Link>
             <Link to="/paquetes" className="py-2 text-[#FF431B] font-semibold" onClick={() => setMobileMenuOpen(false)}>Paquetes</Link>
             <Link to="/#sucursales" className="py-2 hover:text-slate-900 transition-colors" onClick={() => setMobileMenuOpen(false)}>Sucursales</Link>
-            <button className="mt-4 bg-slate-900 flex items-center justify-center gap-2 text-white text-sm font-medium px-5 py-3 rounded-full hover:bg-slate-800 transition-colors">
+            <a href="https://wa.me/529993185571?text=Hola%2C%20me%20gustar%C3%ADa%20agendar%20una%20cita" target="_blank" rel="noopener noreferrer" className="mt-4 bg-slate-900 flex items-center justify-center gap-2 text-white text-sm font-medium px-5 py-3 rounded-full hover:bg-slate-800 transition-colors">
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
               </svg>
               <span>Agendar Cita</span>
-            </button>
+            </a>
           </div>
         </div>
       )}
