@@ -77,7 +77,7 @@ const Footer = () => {
       <div className="border-t border-slate-200">
         <div className="max-w-[1200px] mx-auto px-20 py-6 max-md:px-5">
           <div className="flex items-center justify-between flex-wrap gap-4">
-            <p className="text-slate-400 text-sm">
+            <p className="text-slate-400 text-sm flex items-center">
               © 2026 IMEDILAB. Todos los derechos reservados. | Diseñado y Desarrollado por{" "}
               <a href="#" className="text-slate-500 underline hover:text-slate-700">
                 Búho Solutions.
