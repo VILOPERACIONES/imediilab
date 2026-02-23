@@ -2,7 +2,7 @@ import React from "react";
 
 const CorporateSolutions = () => {
   return (
-    <section id="empresas" className="bg-slate-50/80 border-y border-slate-200/60 py-20 px-20 max-md:px-5">
+    <section id="empresas" className="bg-white border-y border-slate-200/60 py-20 px-20 max-md:px-5">
       <div className="max-w-[1200px] mx-auto">
         {/* Header */}
         <div className="flex items-start justify-between mb-12 max-md:flex-col max-md:gap-4">
