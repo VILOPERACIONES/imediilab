@@ -1,5 +1,18 @@
 import React from "react";
 
+const logos = [
+  "https://res.cloudinary.com/diefluaw7/image/upload/v1771877351/Group_11_kneo1m.svg",
+  "https://res.cloudinary.com/diefluaw7/image/upload/v1771877352/Group_10_xko2fc.svg",
+  "https://res.cloudinary.com/diefluaw7/image/upload/v1771877350/Group_12_sl0lxu.svg",
+  "https://res.cloudinary.com/diefluaw7/image/upload/v1771877350/Group_8_wap3db.svg",
+  "https://res.cloudinary.com/diefluaw7/image/upload/v1771877349/Group_13_e7aozd.svg",
+  "https://res.cloudinary.com/diefluaw7/image/upload/v1771877348/Group_7_sqfwei.svg",
+  "https://res.cloudinary.com/diefluaw7/image/upload/v1771877349/Group_14_1_qlc3kl.svg",
+  "https://res.cloudinary.com/diefluaw7/image/upload/v1771877352/Group_6_qc4qsi.svg",
+  "https://res.cloudinary.com/diefluaw7/image/upload/v1771877349/Group_15_y8h0d6.svg",
+  "https://res.cloudinary.com/diefluaw7/image/upload/v1771877349/Group_5_nljnrq.svg",
+];
+
 const CorporateSolutions = () => {
   return (
     <section id="empresas" className="bg-white border-y border-slate-200/60 py-20 px-20 max-md:px-5">
@@ -69,16 +82,20 @@ const CorporateSolutions = () => {
         </div>
 
         {/* Trusted Companies */}
-        <div className="border-t border-slate-200/60 pt-10">
+        <div className="border-t border-slate-200/60 pt-10 overflow-hidden">
           <p className="text-center text-xs font-medium text-slate-400 uppercase tracking-widest mb-6">
             Confían en nosotros
           </p>
-          <div className="flex items-center justify-center gap-12 flex-wrap">
-            <span className="text-lg font-bold text-slate-300">CORPORATIVO A</span>
-            <span className="text-lg font-bold text-slate-300">Grupo Industrial</span>
-            <span className="text-lg font-bold text-slate-300">TECH_SYSTEMS</span>
-            <span className="text-lg font-bold text-slate-300">Logística Global</span>
-            <span className="text-lg font-bold text-slate-300">BANCO NACIONAL</span>
+          <div className="flex items-center justify-center gap-12 w-max animate-scroll">
+            {/* Primera copia */}
+            {logos.map((logo, index) => (
+              <img key={index} src={logo} alt="logo" className="h-16 w-auto object-contain" />
+            ))}
+
+            {/* Segunda copia (para efecto infinito) */}
+            {logos.map((logo, index) => (
+              <img key={`duplicate-${index}`} src={logo} alt="logo" className="h-16 w-auto object-contain" />
+            ))}
           </div>
         </div>
       </div>
