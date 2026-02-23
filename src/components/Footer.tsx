@@ -82,7 +82,11 @@ const Footer = () => {
               <a href="#" className="text-slate-500 underline hover:text-slate-700">
                 Búho Solutions.
               </a>{" "}
-              <a href="https://admin.imedilab.mx/" className="pl-2" target="_blank">
+              <a
+                href="https://admin.imedilab.mx/"
+                className="pl-2 text-slate-400 hover:text-slate-600 transition-colors"
+                target="_blank"
+              >
                 <svg className="w-5 h-5" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                   <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
