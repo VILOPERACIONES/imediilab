@@ -86,7 +86,7 @@ const CorporateSolutions = () => {
           <p className="text-center text-xs font-medium text-slate-400 uppercase tracking-widest mb-6">
             Confían en nosotros
           </p>
-          <div className="flex items-center justify-center gap-12 w-max animate-scroll">
+          <div className="flex items-center justify-center gap-12 w-max animate-scroll hover:[animation-play-state:paused]">
             {/* Primera copia */}
             {logos.map((logo, index) => (
               <img key={index} src={logo} alt="logo" className="h-16 w-auto object-contain" />
