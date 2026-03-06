@@ -11,6 +11,7 @@ const logos = [
   "https://res.cloudinary.com/diefluaw7/image/upload/v1771877352/Group_6_qc4qsi.svg",
   "https://res.cloudinary.com/diefluaw7/image/upload/v1771877349/Group_15_y8h0d6.svg",
   "https://res.cloudinary.com/diefluaw7/image/upload/v1771877349/Group_5_nljnrq.svg",
+  "https://res.cloudinary.com/diefluaw7/image/upload/v1772806697/Group_16_feaavk.svg",
 ];
 
 const CorporateSolutions = () => {
