@@ -15,6 +15,14 @@ const Services = () => {
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState('');
+  const [selectedService, setSelectedService] = useState<Servicio | null>(null);
+  const [searchParams] = useSearchParams();
+
+  // Pre-fill search from URL query param
+  useEffect(() => {
+    const q = searchParams.get('q');
+    if (q) setSearchQuery(q);
+  }, [searchParams]);
 
   useEffect(() => {
     const fetchServices = async () => {
