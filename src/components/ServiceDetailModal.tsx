@@ -46,9 +46,12 @@ const ServiceDetailModal: React.FC<ServiceDetailModalProps> = ({ service, open, 
 
         {/* Description */}
         {service.descripcion && (
-          <p className="text-slate-500 text-sm leading-relaxed mb-4">
-            {service.descripcion}
-          </p>
+          <div className="bg-amber-50/60 border border-amber-100 rounded-xl p-4 mb-4">
+            <span className="text-xs text-amber-600 uppercase tracking-wider font-semibold mb-1.5 block">Descripción</span>
+            <p className="text-slate-600 text-sm leading-relaxed whitespace-pre-line">
+              {service.descripcion}
+            </p>
+          </div>
         )}
 
         {/* Price */}
