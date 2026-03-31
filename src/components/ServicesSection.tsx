@@ -13,7 +13,8 @@ const ServicesSection = () => {
       try {
         const { data, error } = await supabase
           .from('servicios')
-          .select('*');
+          .select('*')
+          .eq('activo', true);
 
         if (error) {
           console.error('Error fetching services:', error);
