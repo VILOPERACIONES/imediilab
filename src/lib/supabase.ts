@@ -7,14 +7,13 @@ export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 // Types for database tables
 export interface Servicio {
-  id: number;
+  id: string;
   nombre: string;
-  descripcion: string;
+  descripcion?: string;
   icono?: string;
   precio?: number;
-  activo: boolean;
-  orden?: number;
   created_at?: string;
+  updated_at?: string;
 }
 
 export interface Categoria {
