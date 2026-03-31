@@ -13,7 +13,8 @@ const ServicesSection = () => {
       try {
         const { data, error } = await supabase
           .from('servicios')
-          .select('*');
+          .select('*')
+          .eq('activo', true);
 
         if (error) {
           console.error('Error fetching services:', error);
@@ -93,7 +94,7 @@ const ServicesSection = () => {
         {/* Services Grid */}
         {services.length > 0 ? (
           <div className="grid grid-cols-4 gap-4 mb-10 max-md:grid-cols-2 max-sm:grid-cols-1">
-            {services.map((service) => (
+            {services.slice(0, 8).map((service) => (
               <div key={service.id} className="bg-white rounded-xl border border-amber-300 p-5">
                 <h3 className="text-slate-900 text-base font-semibold mb-2">
                   {service.nombre}

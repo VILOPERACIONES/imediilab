@@ -11,6 +11,7 @@ export interface Servicio {
   nombre: string;
   descripcion: string;
   icono?: string;
+  precio?: number;
   activo: boolean;
   orden?: number;
   created_at?: string;

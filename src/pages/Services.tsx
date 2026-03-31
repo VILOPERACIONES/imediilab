@@ -7,22 +7,27 @@ import Footer from '@/components/Footer';
 import WhatsAppButton from '@/components/WhatsAppButton';
 import logo from '@/assets/imedilab-logo.svg';
 
+const ITEMS_PER_PAGE = 12;
+
 const Services = () => {
   const [services, setServices] = useState<Servicio[]>([]);
   const [loading, setLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
     const fetchServices = async () => {
       try {
         const { data, error } = await supabase
           .from('servicios')
-          .select('*');
+          .select('*')
+          .eq('activo', true);
 
         if (error) {
           console.error('Error fetching services:', error);
           setServices([]);
         } else {
-          setServices(data || []);
+          const sorted = (data || []).sort((a, b) => (a.orden || 0) - (b.orden || 0));
+          setServices(sorted);
         }
       } catch (err) {
         console.error('Error:', err);
@@ -34,6 +39,17 @@ const Services = () => {
 
     fetchServices();
   }, []);
+
+  const totalPages = Math.ceil(services.length / ITEMS_PER_PAGE);
+  const paginatedServices = services.slice(
+    (currentPage - 1) * ITEMS_PER_PAGE,
+    currentPage * ITEMS_PER_PAGE
+  );
+
+  const goToPage = (page: number) => {
+    setCurrentPage(page);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   return (
     <div className="min-h-screen bg-slate-50">
@@ -96,26 +112,66 @@ const Services = () => {
               </Link>
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {services.map((service) => (
-                <div
-                  key={service.id}
-                  className="bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-md hover:border-amber-200 transition-all p-6"
-                >
-                  {service.icono && (
-                    <div className="w-12 h-12 bg-amber-50 rounded-xl flex items-center justify-center mb-4 text-2xl">
-                      {service.icono}
-                    </div>
-                  )}
-                  <h3 className="text-slate-900 text-lg font-semibold mb-2">
-                    {service.nombre}
-                  </h3>
-                  <p className="text-slate-500 text-sm leading-relaxed">
-                    {service.descripcion}
-                  </p>
+            <>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {paginatedServices.map((service) => (
+                  <div
+                    key={service.id}
+                    className="bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-md hover:border-amber-200 transition-all p-6"
+                  >
+                    {service.icono && (
+                      <div className="w-12 h-12 bg-amber-50 rounded-xl flex items-center justify-center mb-4 text-2xl">
+                        {service.icono}
+                      </div>
+                    )}
+                    <h3 className="text-slate-900 text-lg font-semibold mb-2">
+                      {service.nombre}
+                    </h3>
+                    <p className="text-slate-500 text-sm leading-relaxed mb-3">
+                      {service.descripcion}
+                    </p>
+                    {service.precio != null && service.precio > 0 && (
+                      <p className="text-amber-600 text-lg font-bold">
+                        ${service.precio.toLocaleString('es-MX')} MXN
+                      </p>
+                    )}
+                  </div>
+                ))}
+              </div>
+
+              {/* Pagination */}
+              {totalPages > 1 && (
+                <div className="flex justify-center items-center gap-2 mt-10">
+                  <button
+                    onClick={() => goToPage(currentPage - 1)}
+                    disabled={currentPage === 1}
+                    className="px-4 py-2 text-sm font-medium rounded-lg border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+                  >
+                    Anterior
+                  </button>
+                  {Array.from({ length: totalPages }).map((_, i) => (
+                    <button
+                      key={i + 1}
+                      onClick={() => goToPage(i + 1)}
+                      className={`w-10 h-10 text-sm font-medium rounded-lg transition-colors ${
+                        currentPage === i + 1
+                          ? 'bg-amber-500 text-white'
+                          : 'border border-slate-200 bg-white text-slate-700 hover:bg-slate-50'
+                      }`}
+                    >
+                      {i + 1}
+                    </button>
+                  ))}
+                  <button
+                    onClick={() => goToPage(currentPage + 1)}
+                    disabled={currentPage === totalPages}
+                    className="px-4 py-2 text-sm font-medium rounded-lg border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+                  >
+                    Siguiente
+                  </button>
                 </div>
-              ))}
-            </div>
+              )}
+            </>
           )}
 
           {/* Contact CTA */}
