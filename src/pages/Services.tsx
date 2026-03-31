@@ -198,7 +198,8 @@ const Services = () => {
               {paginatedServices.map((service, index) => (
                 <div
                   key={service.id}
-                  className={`flex flex-col md:flex-row md:items-center px-6 py-4 hover:bg-amber-50/40 transition-colors ${
+                  onClick={() => setSelectedService(service)}
+                  className={`flex flex-col md:flex-row md:items-center px-6 py-4 hover:bg-amber-50/40 transition-colors cursor-pointer ${
                     index < paginatedServices.length - 1 ? 'border-b border-slate-50' : ''
                   }`}
                 >
