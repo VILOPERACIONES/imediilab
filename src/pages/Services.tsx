@@ -1,18 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, Search, X } from 'lucide-react';
 import { supabase, Servicio } from '@/lib/supabase';
 import { Skeleton } from '@/components/ui/skeleton';
 import Footer from '@/components/Footer';
 import WhatsAppButton from '@/components/WhatsAppButton';
 import logo from '@/assets/imedilab-logo.svg';
 
-const ITEMS_PER_PAGE = 12;
+const ITEMS_PER_PAGE = 50;
 
 const Services = () => {
   const [services, setServices] = useState<Servicio[]>([]);
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
+  const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
     const fetchServices = async () => {
@@ -25,7 +26,9 @@ const Services = () => {
           console.error('Error fetching services:', error);
           setServices([]);
         } else {
-          const sorted = (data || []).sort((a, b) => (a.orden || 0) - (b.orden || 0));
+          const sorted = (data || []).sort((a, b) =>
+            (a.nombre || '').localeCompare(b.nombre || '', 'es')
+          );
           setServices(sorted);
         }
       } catch (err) {
@@ -39,15 +42,42 @@ const Services = () => {
     fetchServices();
   }, []);
 
-  const totalPages = Math.ceil(services.length / ITEMS_PER_PAGE);
-  const paginatedServices = services.slice(
+  const filteredServices = useMemo(() => {
+    if (!searchQuery.trim()) return services;
+    const q = searchQuery.toLowerCase().trim();
+    return services.filter((s) => s.nombre.toLowerCase().includes(q));
+  }, [services, searchQuery]);
+
+  const totalPages = Math.ceil(filteredServices.length / ITEMS_PER_PAGE);
+  const paginatedServices = filteredServices.slice(
     (currentPage - 1) * ITEMS_PER_PAGE,
     currentPage * ITEMS_PER_PAGE
   );
 
+  // Reset to page 1 when search changes
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [searchQuery]);
+
   const goToPage = (page: number) => {
     setCurrentPage(page);
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const getPageNumbers = () => {
+    const pages: (number | 'ellipsis')[] = [];
+    if (totalPages <= 7) {
+      for (let i = 1; i <= totalPages; i++) pages.push(i);
+    } else {
+      pages.push(1);
+      if (currentPage > 3) pages.push('ellipsis');
+      const start = Math.max(2, currentPage - 1);
+      const end = Math.min(totalPages - 1, currentPage + 1);
+      for (let i = start; i <= end; i++) pages.push(i);
+      if (currentPage < totalPages - 2) pages.push('ellipsis');
+      pages.push(totalPages);
+    }
+    return pages;
   };
 
   return (
@@ -66,111 +96,162 @@ const Services = () => {
       </header>
 
       {/* Main Content */}
-      <main className="py-12 md:py-20 px-5 md:px-20">
+      <main className="py-10 md:py-16 px-5 md:px-20">
         <div className="max-w-[1200px] mx-auto">
           {/* Page Header */}
-          <div className="text-center mb-12">
-            <h1 className="text-slate-900 text-3xl md:text-4xl font-bold tracking-tight mb-4">
-              Catálogo de Servicios
+          <div className="text-center mb-8">
+            <h1 className="text-slate-900 text-3xl md:text-4xl font-bold tracking-tight mb-3">
+              Catálogo de Estudios
             </h1>
             <p className="text-slate-500 text-base md:text-lg max-w-2xl mx-auto">
-              Descubre todos nuestros servicios de diagnóstico clínico y gabinete disponibles para ti.
+              Encuentra el estudio que necesitas. Contamos con más de {services.length > 0 ? services.length.toLocaleString('es-MX') : '800'} estudios disponibles.
             </p>
           </div>
 
-          {/* Services Grid */}
+          {/* Search Bar */}
+          <div className="max-w-xl mx-auto mb-8">
+            <div className="relative">
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
+              <input
+                type="text"
+                placeholder="Buscar estudio por nombre..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full pl-12 pr-12 py-3.5 bg-white border border-slate-200 rounded-xl text-slate-900 text-sm placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-amber-400/50 focus:border-amber-400 transition-all shadow-sm"
+              />
+              {searchQuery && (
+                <button
+                  onClick={() => setSearchQuery('')}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              )}
+            </div>
+            {searchQuery && (
+              <p className="text-sm text-slate-500 mt-2 text-center">
+                {filteredServices.length} resultado{filteredServices.length !== 1 ? 's' : ''} encontrado{filteredServices.length !== 1 ? 's' : ''}
+              </p>
+            )}
+          </div>
+
+          {/* Results info */}
+          {!loading && filteredServices.length > 0 && (
+            <div className="flex items-center justify-between mb-4 text-sm text-slate-500">
+              <span>
+                Mostrando {((currentPage - 1) * ITEMS_PER_PAGE) + 1}-{Math.min(currentPage * ITEMS_PER_PAGE, filteredServices.length)} de {filteredServices.length}
+              </span>
+              {totalPages > 1 && (
+                <span>Página {currentPage} de {totalPages}</span>
+              )}
+            </div>
+          )}
+
+          {/* Services Table */}
           {loading ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {Array.from({ length: 9 }).map((_, index) => (
-                <div key={index} className="bg-white rounded-2xl border border-slate-100 shadow-sm p-6">
-                  <Skeleton className="h-6 w-3/4 mb-3" />
-                  <Skeleton className="h-4 w-full mb-2" />
-                  <Skeleton className="h-4 w-2/3" />
+            <div className="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden">
+              {Array.from({ length: 12 }).map((_, i) => (
+                <div key={i} className="flex items-center justify-between px-6 py-4 border-b border-slate-50">
+                  <Skeleton className="h-5 w-2/3" />
+                  <Skeleton className="h-5 w-24" />
                 </div>
               ))}
             </div>
-          ) : services.length === 0 ? (
-            <div className="text-center py-20">
-              <div className="w-20 h-20 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                <svg className="w-10 h-10 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
-                </svg>
-              </div>
-              <h2 className="text-slate-900 text-xl font-semibold mb-2">
-                No hay servicios disponibles
+          ) : filteredServices.length === 0 ? (
+            <div className="text-center py-16 bg-white rounded-2xl border border-slate-100">
+              <Search className="w-12 h-12 text-slate-300 mx-auto mb-4" />
+              <h2 className="text-slate-900 text-lg font-semibold mb-2">
+                {searchQuery ? 'Sin resultados' : 'No hay estudios disponibles'}
               </h2>
-              <p className="text-slate-500 text-base mb-6">
-                Aún no se han configurado servicios en el sistema.
+              <p className="text-slate-500 text-sm">
+                {searchQuery
+                  ? `No se encontraron estudios con "${searchQuery}". Intenta con otro término.`
+                  : 'Aún no se han configurado estudios en el sistema.'}
               </p>
-              <Link
-                to="/"
-                className="inline-flex items-center gap-2 text-[#FF431B] font-medium hover:text-[#e63a17] transition-colors"
-              >
-                <ArrowLeft className="w-4 h-4" />
-                <span>Volver al inicio</span>
-              </Link>
+              {searchQuery && (
+                <button
+                  onClick={() => setSearchQuery('')}
+                  className="mt-4 text-sm text-[#FF431B] font-medium hover:underline"
+                >
+                  Limpiar búsqueda
+                </button>
+              )}
             </div>
           ) : (
-            <>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {paginatedServices.map((service) => (
-                  <div
-                    key={service.id}
-                    className="bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-md hover:border-amber-200 transition-all p-6"
-                  >
-                    {service.icono && (
-                      <div className="w-12 h-12 bg-amber-50 rounded-xl flex items-center justify-center mb-4 text-2xl">
-                        {service.icono}
-                      </div>
-                    )}
-                    <h3 className="text-slate-900 text-lg font-semibold mb-2">
+            <div className="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden">
+              {/* Table Header */}
+              <div className="hidden md:flex items-center px-6 py-3 bg-slate-50 border-b border-slate-100 text-xs font-semibold text-slate-500 uppercase tracking-wider">
+                <span className="flex-1">Estudio</span>
+                <span className="w-36 text-right">Precio</span>
+              </div>
+
+              {/* Table Rows */}
+              {paginatedServices.map((service, index) => (
+                <div
+                  key={service.id}
+                  className={`flex flex-col md:flex-row md:items-center px-6 py-4 hover:bg-amber-50/40 transition-colors ${
+                    index < paginatedServices.length - 1 ? 'border-b border-slate-50' : ''
+                  }`}
+                >
+                  <div className="flex-1 min-w-0">
+                    <p className="text-slate-900 text-sm font-medium truncate">
                       {service.nombre}
-                    </h3>
-                    <p className="text-slate-500 text-sm leading-relaxed mb-3">
-                      {service.descripcion}
                     </p>
-                    {service.precio != null && service.precio > 0 && (
-                      <p className="text-amber-600 text-lg font-bold">
-                        ${service.precio.toLocaleString('es-MX')} MXN
+                    {service.descripcion && (
+                      <p className="text-slate-400 text-xs mt-0.5 truncate">
+                        {service.descripcion}
                       </p>
                     )}
                   </div>
-                ))}
-              </div>
-
-              {/* Pagination */}
-              {totalPages > 1 && (
-                <div className="flex justify-center items-center gap-2 mt-10">
-                  <button
-                    onClick={() => goToPage(currentPage - 1)}
-                    disabled={currentPage === 1}
-                    className="px-4 py-2 text-sm font-medium rounded-lg border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
-                  >
-                    Anterior
-                  </button>
-                  {Array.from({ length: totalPages }).map((_, i) => (
-                    <button
-                      key={i + 1}
-                      onClick={() => goToPage(i + 1)}
-                      className={`w-10 h-10 text-sm font-medium rounded-lg transition-colors ${
-                        currentPage === i + 1
-                          ? 'bg-amber-500 text-white'
-                          : 'border border-slate-200 bg-white text-slate-700 hover:bg-slate-50'
-                      }`}
-                    >
-                      {i + 1}
-                    </button>
-                  ))}
-                  <button
-                    onClick={() => goToPage(currentPage + 1)}
-                    disabled={currentPage === totalPages}
-                    className="px-4 py-2 text-sm font-medium rounded-lg border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
-                  >
-                    Siguiente
-                  </button>
+                  <div className="md:w-36 md:text-right mt-1 md:mt-0">
+                    {service.precio != null && service.precio > 0 ? (
+                      <span className="text-amber-600 text-sm font-bold">
+                        ${service.precio.toLocaleString('es-MX', { minimumFractionDigits: 2 })} MXN
+                      </span>
+                    ) : (
+                      <span className="text-slate-400 text-xs">Consultar precio</span>
+                    )}
+                  </div>
                 </div>
+              ))}
+            </div>
+          )}
+
+          {/* Pagination */}
+          {totalPages > 1 && (
+            <div className="flex justify-center items-center gap-1.5 mt-8">
+              <button
+                onClick={() => goToPage(currentPage - 1)}
+                disabled={currentPage === 1}
+                className="px-3 py-2 text-sm font-medium rounded-lg border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+              >
+                Anterior
+              </button>
+              {getPageNumbers().map((page, i) =>
+                page === 'ellipsis' ? (
+                  <span key={`e-${i}`} className="px-2 text-slate-400">…</span>
+                ) : (
+                  <button
+                    key={page}
+                    onClick={() => goToPage(page)}
+                    className={`w-9 h-9 text-sm font-medium rounded-lg transition-colors ${
+                      currentPage === page
+                        ? 'bg-[#FF431B] text-white shadow-sm'
+                        : 'border border-slate-200 bg-white text-slate-700 hover:bg-slate-50'
+                    }`}
+                  >
+                    {page}
+                  </button>
+                )
               )}
-            </>
+              <button
+                onClick={() => goToPage(currentPage + 1)}
+                disabled={currentPage === totalPages}
+                className="px-3 py-2 text-sm font-medium rounded-lg border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+              >
+                Siguiente
+              </button>
+            </div>
           )}
 
           {/* Contact CTA */}
@@ -178,13 +259,13 @@ const Services = () => {
             <div className="mt-16 text-center">
               <div className="bg-gradient-to-r from-amber-50 to-orange-50 rounded-2xl p-8 md:p-12">
                 <h2 className="text-slate-900 text-xl md:text-2xl font-bold mb-3">
-                  ¿Necesitas más información?
+                  ¿No encuentras tu estudio?
                 </h2>
                 <p className="text-slate-600 text-base mb-6 max-w-xl mx-auto">
-                  Contáctanos y con gusto te asesoraremos sobre el servicio que necesitas.
+                  Contáctanos y con gusto te ayudamos a encontrar el estudio que necesitas.
                 </p>
                 <a
-                  href="https://wa.me/529993185571"
+                  href="https://wa.me/529993185571?text=Hola%2C%20busco%20un%20estudio%20que%20no%20encuentro%20en%20el%20cat%C3%A1logo"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-3 bg-[#25D366] text-white text-base font-semibold px-6 py-3.5 rounded-full hover:bg-[#20bd5a] transition-colors"
