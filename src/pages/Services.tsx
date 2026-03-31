@@ -1,10 +1,11 @@
 import React, { useEffect, useState, useMemo } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { ArrowLeft, Search, X } from 'lucide-react';
 import { supabase, Servicio } from '@/lib/supabase';
 import { Skeleton } from '@/components/ui/skeleton';
 import Footer from '@/components/Footer';
 import WhatsAppButton from '@/components/WhatsAppButton';
+import ServiceDetailModal from '@/components/ServiceDetailModal';
 import logo from '@/assets/imedilab-logo.svg';
 
 const ITEMS_PER_PAGE = 50;
@@ -14,6 +15,14 @@ const Services = () => {
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState('');
+  const [selectedService, setSelectedService] = useState<Servicio | null>(null);
+  const [searchParams] = useSearchParams();
+
+  // Pre-fill search from URL query param
+  useEffect(() => {
+    const q = searchParams.get('q');
+    if (q) setSearchQuery(q);
+  }, [searchParams]);
 
   useEffect(() => {
     const fetchServices = async () => {
@@ -189,7 +198,8 @@ const Services = () => {
               {paginatedServices.map((service, index) => (
                 <div
                   key={service.id}
-                  className={`flex flex-col md:flex-row md:items-center px-6 py-4 hover:bg-amber-50/40 transition-colors ${
+                  onClick={() => setSelectedService(service)}
+                  className={`flex flex-col md:flex-row md:items-center px-6 py-4 hover:bg-amber-50/40 transition-colors cursor-pointer ${
                     index < paginatedServices.length - 1 ? 'border-b border-slate-50' : ''
                   }`}
                 >
@@ -281,6 +291,11 @@ const Services = () => {
         </div>
       </main>
 
+      <ServiceDetailModal
+        service={selectedService}
+        open={!!selectedService}
+        onClose={() => setSelectedService(null)}
+      />
       <Footer />
       <WhatsAppButton />
     </div>
