@@ -1,10 +1,11 @@
 import React, { useEffect, useState, useMemo } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { ArrowLeft, Search, X } from 'lucide-react';
 import { supabase, Servicio } from '@/lib/supabase';
 import { Skeleton } from '@/components/ui/skeleton';
 import Footer from '@/components/Footer';
 import WhatsAppButton from '@/components/WhatsAppButton';
+import ServiceDetailModal from '@/components/ServiceDetailModal';
 import logo from '@/assets/imedilab-logo.svg';
 
 const ITEMS_PER_PAGE = 50;
