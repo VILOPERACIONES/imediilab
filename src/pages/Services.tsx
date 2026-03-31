@@ -291,6 +291,11 @@ const Services = () => {
         </div>
       </main>
 
+      <ServiceDetailModal
+        service={selectedService}
+        open={!!selectedService}
+        onClose={() => setSelectedService(null)}
+      />
       <Footer />
       <WhatsAppButton />
     </div>

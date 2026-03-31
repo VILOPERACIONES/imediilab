@@ -21,16 +21,16 @@ const Footer = () => {
           <div>
             <h3 className="text-slate-900 text-base font-semibold mb-5">Servicios</h3>
             <nav className="flex flex-col gap-3 text-sm text-slate-500">
-              <a href="#" className="hover:text-slate-900 transition-colors">
+              <a href="/servicios" className="hover:text-slate-900 transition-colors">
                 Análisis Clínicos
               </a>
-              <a href="#" className="hover:text-slate-900 transition-colors">
+              <a href="/servicios?q=Rayos" className="hover:text-slate-900 transition-colors">
                 Rayos X
               </a>
-              <a href="#" className="hover:text-slate-900 transition-colors">
+              <a href="/servicios?q=Ultrasonido" className="hover:text-slate-900 transition-colors">
                 Ultrasonidos
               </a>
-              <a href="#" className="hover:text-slate-900 transition-colors">
+              <a href="/servicios" className="hover:text-slate-900 transition-colors">
                 Salud Ocupacional
               </a>
             </nav>
