@@ -135,13 +135,22 @@ const ServicesSection = () => {
           ))}
         </div>
 
-        {/* CTA Link */}
-        <div className="text-center">
+        {/* CTAs */}
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <Link
             to="/servicios"
-            className="inline-flex items-center gap-1 text-sm text-[#FF431B] font-medium hover:text-[#e63a17] transition-colors"
+            className="inline-flex items-center gap-2 bg-[#FF431B] text-white text-sm font-semibold px-6 py-3 rounded-full hover:bg-[#e63a17] transition-colors shadow-md shadow-orange-200"
           >
             <span>Ver catálogo completo de estudios</span>
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </Link>
+          <Link
+            to="/paquetes"
+            className="inline-flex items-center gap-2 text-sm font-semibold text-slate-700 px-6 py-3 rounded-full border border-slate-200 bg-white hover:bg-slate-50 transition-colors"
+          >
+            <span>Ver paquetes</span>
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>

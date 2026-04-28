@@ -7,19 +7,23 @@ import Index from "./pages/Index";
 import Packages from "./pages/Packages";
 import Services from "./pages/Services";
 import NotFound from "./pages/NotFound";
+import ScrollToTop from "./components/ScrollToTop";
 
 const queryClient = new QueryClient();
 
 const AppRoutes = () => {
   const location = useLocation();
   return (
-    <Routes key={location.pathname}>
-      <Route path="/" element={<Index />} />
-      <Route path="/paquetes" element={<Packages />} />
-      <Route path="/servicios" element={<Services />} />
-      {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-      <Route path="*" element={<NotFound />} />
-    </Routes>
+    <>
+      <ScrollToTop />
+      <Routes key={location.pathname}>
+        <Route path="/" element={<Index />} />
+        <Route path="/paquetes" element={<Packages />} />
+        <Route path="/servicios" element={<Services />} />
+        {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </>
   );
 };
 

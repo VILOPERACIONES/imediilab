@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { X } from 'lucide-react';
 import { Servicio } from '@/lib/supabase';
 
@@ -9,6 +9,27 @@ interface ServiceDetailModalProps {
 }
 
 const ServiceDetailModal: React.FC<ServiceDetailModalProps> = ({ service, open, onClose }) => {
+  // Lock body scroll while modal is open + ESC to close
+  useEffect(() => {
+    if (!open) return;
+    const originalOverflow = document.body.style.overflow;
+    const originalPaddingRight = document.body.style.paddingRight;
+    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+    document.body.style.overflow = 'hidden';
+    if (scrollbarWidth > 0) {
+      document.body.style.paddingRight = `${scrollbarWidth}px`;
+    }
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose();
+    };
+    window.addEventListener('keydown', onKey);
+    return () => {
+      document.body.style.overflow = originalOverflow;
+      document.body.style.paddingRight = originalPaddingRight;
+      window.removeEventListener('keydown', onKey);
+    };
+  }, [open, onClose]);
+
   if (!open || !service) return null;
 
   const whatsappMessage = `Hola, me gustaría solicitar información sobre el estudio *${service.nombre}*${service.precio && service.precio > 0 ? ` ($${service.precio.toLocaleString('es-MX', { minimumFractionDigits: 2 })} MXN)` : ''}. ¿Me pueden dar más detalles?`;
@@ -21,53 +42,52 @@ const ServiceDetailModal: React.FC<ServiceDetailModalProps> = ({ service, open, 
 
       {/* Modal */}
       <div
-        className="relative bg-white rounded-2xl shadow-2xl max-w-lg w-full p-6 md:p-8 animate-in fade-in zoom-in-95 duration-200"
+        className="relative bg-white rounded-2xl shadow-2xl max-w-lg w-full max-h-[90vh] flex flex-col animate-in fade-in zoom-in-95 duration-200"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 text-slate-400 hover:text-slate-700 transition-colors"
+          className="absolute top-4 right-4 text-slate-400 hover:text-slate-700 transition-colors z-10"
         >
           <X className="w-5 h-5" />
         </button>
 
-        {/* Icon */}
-        {service.icono && (
-          <div className="w-14 h-14 bg-amber-50 rounded-xl flex items-center justify-center mb-4 text-3xl">
-            {service.icono}
-          </div>
-        )}
-
-        {/* Name */}
-        <h2 className="text-slate-900 text-xl md:text-2xl font-bold mb-3 pr-8">
-          {service.nombre}
-        </h2>
-
-        {/* Description */}
-        {service.descripcion && (
-          <div className="bg-amber-50/60 border border-amber-100 rounded-xl p-4 mb-4">
-            <span className="text-xs text-amber-600 uppercase tracking-wider font-semibold mb-1.5 block">Descripción</span>
-            <p className="text-slate-600 text-sm leading-relaxed whitespace-pre-line">
-              {service.descripcion}
-            </p>
-          </div>
-        )}
-
-        {/* Price */}
-        <div className="bg-slate-50 rounded-xl p-4 mb-6">
-          <span className="text-xs text-slate-400 uppercase tracking-wider font-medium">Precio</span>
-          {service.precio != null && service.precio > 0 ? (
-            <p className="text-amber-600 text-2xl font-bold mt-1">
-              ${service.precio.toLocaleString('es-MX', { minimumFractionDigits: 2 })} <span className="text-sm font-medium">MXN</span>
-            </p>
-          ) : (
-            <p className="text-slate-500 text-base mt-1">Consultar disponibilidad y precio</p>
+        {/* Scrollable content */}
+        <div className="overflow-y-auto p-6 md:p-8 flex-1">
+          {service.icono && (
+            <div className="w-14 h-14 bg-amber-50 rounded-xl flex items-center justify-center mb-4 text-3xl">
+              {service.icono}
+            </div>
           )}
+
+          <h2 className="text-slate-900 text-xl md:text-2xl font-bold mb-3 pr-8">
+            {service.nombre}
+          </h2>
+
+          {service.descripcion && (
+            <div className="bg-amber-50/60 border border-amber-100 rounded-xl p-4 mb-4">
+              <span className="text-xs text-amber-600 uppercase tracking-wider font-semibold mb-1.5 block">Descripción</span>
+              <p className="text-slate-600 text-sm leading-relaxed whitespace-pre-line">
+                {service.descripcion}
+              </p>
+            </div>
+          )}
+
+          <div className="bg-slate-50 rounded-xl p-4">
+            <span className="text-xs text-slate-400 uppercase tracking-wider font-medium">Precio</span>
+            {service.precio != null && service.precio > 0 ? (
+              <p className="text-amber-600 text-2xl font-bold mt-1">
+                ${service.precio.toLocaleString('es-MX', { minimumFractionDigits: 2 })} <span className="text-sm font-medium">MXN</span>
+              </p>
+            ) : (
+              <p className="text-slate-500 text-base mt-1">Consultar disponibilidad y precio</p>
+            )}
+          </div>
         </div>
 
-        {/* Actions */}
-        <div className="flex flex-col sm:flex-row gap-3">
+        {/* Sticky footer with actions - always visible */}
+        <div className="flex flex-col sm:flex-row gap-3 p-4 md:p-6 border-t border-slate-100 bg-white rounded-b-2xl shrink-0">
           <a
             href={whatsappLink}
             target="_blank"

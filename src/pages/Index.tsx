@@ -1,5 +1,4 @@
-import React, { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import React from 'react';
 import Hero from '@/components/Hero';
 import CorporateSolutions from '@/components/CorporateSolutions';
 import AboutSection from '@/components/AboutSection';
@@ -11,19 +10,6 @@ import Footer from '@/components/Footer';
 import WhatsAppButton from '@/components/WhatsAppButton';
 
 const Index = () => {
-  const location = useLocation();
-
-  useEffect(() => {
-    if (location.hash) {
-      const id = location.hash.replace('#', '');
-      // Wait a tick for sections to render
-      setTimeout(() => {
-        const el = document.getElementById(id);
-        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }, 100);
-    }
-  }, [location]);
-
   return (
     <div className="min-h-screen bg-white">
       <Hero />
