@@ -7,21 +7,24 @@ const LocationsSection = () => {
       address: "Calle 58 307 x 20c y 24, Mérida, Yucatán",
       phone: "999-XXX-XXXX",
       hours: "Lun-Vie: 7:00 AM - 7:00 PM",
-      isMain: false
+      isMain: false,
+      mapsUrl: "https://www.google.com/maps/search/?api=1&query=Calle+58+307+x+20c+y+24+Itzimn%C3%A1+M%C3%A9rida+Yucat%C3%A1n"
     },
     {
       name: "Sucursal Matriz",
       address: "C. 28ᴰ 238, Itzimná 108, 97143 Mérida, Yucatán",
       phone: "999-XXX-XXXX",
       hours: "Lun-Vie: 7:00 AM - 7:00 PM",
-      isMain: true
+      isMain: true,
+      mapsUrl: "https://www.google.com/maps/search/?api=1&query=Calle+28D+238+Itzimn%C3%A1+97143+M%C3%A9rida+Yucat%C3%A1n"
     },
     {
       name: "Sucursal Las Américas",
       address: "C. 108 134-Y 49, Fraccionamiento Las Américas 2, 97302 Mérida, Yucatán",
       phone: "999-XXX-XXXX",
       hours: "Lun-Vie: 7:00 AM - 7:00 PM",
-      isMain: false
+      isMain: false,
+      mapsUrl: "https://www.google.com/maps/search/?api=1&query=Calle+108+134-Y+49+Fraccionamiento+Las+Am%C3%A9ricas+2+97302+M%C3%A9rida+Yucat%C3%A1n"
     }
   ];
 
@@ -79,9 +82,14 @@ const LocationsSection = () => {
                   </div>
                 </div>
                 
-                <button className="w-full border border-amber-400 text-amber-500 font-semibold text-sm py-3.5 rounded-lg hover:bg-amber-50 transition-colors">
+                <a
+                  href={location.mapsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block text-center w-full border border-amber-400 text-amber-500 font-semibold text-sm py-3.5 rounded-lg hover:bg-amber-50 transition-colors"
+                >
                   Ver en Google Maps
-                </button>
+                </a>
               </div>
             </div>
           ))}
