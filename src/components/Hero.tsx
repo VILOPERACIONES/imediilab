@@ -153,9 +153,12 @@ const Hero = () => {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                     </svg>
                   </a>
-                  <button className="w-full sm:w-auto bg-white border border-slate-200 text-slate-700 text-sm md:text-base font-medium px-7 py-4 rounded-lg hover:bg-slate-50 transition-colors">
+                  <Link
+                    to="/paquetes"
+                    className="w-full sm:w-auto bg-white border border-slate-200 text-slate-700 text-sm md:text-base font-medium px-7 py-4 rounded-lg hover:bg-slate-50 transition-colors text-center"
+                  >
                     Ver paquetes
-                  </button>
+                  </Link>
                 </div>
 
                 <div className="flex items-center justify-center md:justify-start gap-3">

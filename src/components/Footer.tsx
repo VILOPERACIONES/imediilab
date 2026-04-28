@@ -40,16 +40,16 @@ const Footer = () => {
           <div>
             <h3 className="text-slate-900 text-base font-semibold mb-5">Empresa</h3>
             <nav className="flex flex-col gap-3 text-sm text-slate-500">
-              <a href="#nosotros" className="hover:text-slate-900 transition-colors">
+              <a href="/#nosotros" className="hover:text-slate-900 transition-colors">
                 Nosotros
               </a>
-              <a href="#sucursales" className="hover:text-slate-900 transition-colors">
+              <a href="/#sucursales" className="hover:text-slate-900 transition-colors">
                 Sucursales
               </a>
-              <a href="#" className="hover:text-slate-900 transition-colors">
-                Médicos
+              <a href="/#empresas" className="hover:text-slate-900 transition-colors">
+                Empresas
               </a>
-              <a href="#" className="hover:text-slate-900 transition-colors">
+              <a href="https://wa.me/529993185571" target="_blank" rel="noopener noreferrer" className="hover:text-slate-900 transition-colors">
                 Contacto
               </a>
             </nav>
