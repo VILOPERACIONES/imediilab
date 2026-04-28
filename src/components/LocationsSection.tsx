@@ -44,21 +44,19 @@ const LocationsSection = () => {
         {/* Locations Grid */}
         <div className="grid grid-cols-3 gap-5 max-md:grid-cols-1">
           {locations.map((location, index) => (
-            <div key={index} className="bg-white rounded-xl border border-slate-200 overflow-hidden">
+            <div key={index} className="bg-white rounded-xl border border-slate-200 overflow-hidden flex flex-col relative">
               {location.isMain && (
-                <div className="flex justify-end">
-                  <span className="bg-[#FF431B] text-white text-[10px] font-bold uppercase px-3 py-1.5 rounded-bl-lg">
-                    Matriz
-                  </span>
-                </div>
+                <span className="absolute top-0 right-0 bg-[#FF431B] text-white text-[10px] font-bold uppercase px-3 py-1.5 rounded-bl-lg z-10">
+                  Matriz
+                </span>
               )}
-              
-              <div className={`p-7 ${location.isMain ? 'pt-3' : ''}`}>
-                <h3 className="text-slate-900 text-xl font-bold mb-6">
+
+              <div className="p-7 flex flex-col flex-1">
+                <h3 className="text-slate-900 text-xl font-bold mb-6 pr-16">
                   {location.name}
                 </h3>
-                
-                <div className="space-y-4 mb-8">
+
+                <div className="space-y-4 mb-8 flex-1">
                   <div className="flex items-start gap-3">
                     <svg className="w-4 h-4 text-slate-400 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
@@ -86,7 +84,7 @@ const LocationsSection = () => {
                   href={location.mapsUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block text-center w-full border border-amber-400 text-amber-500 font-semibold text-sm py-3.5 rounded-lg hover:bg-amber-50 transition-colors"
+                  className="block text-center w-full border border-amber-400 text-amber-500 font-semibold text-sm py-3.5 rounded-lg hover:bg-amber-50 transition-colors mt-auto"
                 >
                   Ver en Google Maps
                 </a>
