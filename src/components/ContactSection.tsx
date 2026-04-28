@@ -74,7 +74,7 @@ const ContactSection = () => {
   };
 
   return (
-    <section className="bg-white py-24 px-20 max-md:px-5">
+    <section id="contacto" className="bg-white py-24 px-20 max-md:px-5 scroll-mt-20">
       <div className="max-w-[800px] mx-auto">
         {/* Header */}
         <div className="text-center mb-10">

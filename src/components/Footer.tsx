@@ -49,7 +49,7 @@ const Footer = () => {
               <a href="/#empresas" className="hover:text-slate-900 transition-colors">
                 Empresas
               </a>
-              <a href="https://wa.me/529993185571" target="_blank" rel="noopener noreferrer" className="hover:text-slate-900 transition-colors">
+              <a href="/#contacto" className="hover:text-slate-900 transition-colors">
                 Contacto
               </a>
             </nav>
