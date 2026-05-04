@@ -1,6 +1,10 @@
 import React from 'react';
 
 const LocationsSection = () => {
+  const openMaps = (url: string) => {
+    window.open(url, '_blank', 'noopener,noreferrer');
+  };
+
   const locations = [
     {
       name: "Sucursal Itzimná",
@@ -80,14 +84,13 @@ const LocationsSection = () => {
                   </div>
                 </div>
                 
-                <a
-                  href={location.mapsUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <button
+                  type="button"
+                  onClick={() => openMaps(location.mapsUrl)}
                   className="block text-center w-full border border-amber-400 text-amber-500 font-semibold text-sm py-3.5 rounded-lg hover:bg-amber-50 transition-colors mt-auto"
                 >
                   Ver en Google Maps
-                </a>
+                </button>
               </div>
             </div>
           ))}
