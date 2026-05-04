@@ -8,7 +8,7 @@ const LocationsSection = () => {
       phone: "999-XXX-XXXX",
       hours: "Lun-Vie: 7:00 AM - 7:00 PM",
       isMain: false,
-      mapsUrl: "https://www.google.com/maps/search/?api=1&query=Calle+58+307+x+20c+y+24+Itzimn%C3%A1+M%C3%A9rida+Yucat%C3%A1n"
+      mapsUrl: "https://maps.app.goo.gl/kxz7F7RRnaRy23BN9"
     },
     {
       name: "Sucursal Matriz",
@@ -16,7 +16,7 @@ const LocationsSection = () => {
       phone: "999-XXX-XXXX",
       hours: "Lun-Vie: 7:00 AM - 7:00 PM",
       isMain: true,
-      mapsUrl: "https://www.google.com/maps/search/?api=1&query=Calle+28D+238+Itzimn%C3%A1+97143+M%C3%A9rida+Yucat%C3%A1n"
+      mapsUrl: "https://maps.app.goo.gl/RGp8bBR5witFaAaj7"
     },
     {
       name: "Sucursal Las Américas",
@@ -24,7 +24,7 @@ const LocationsSection = () => {
       phone: "999-XXX-XXXX",
       hours: "Lun-Vie: 7:00 AM - 7:00 PM",
       isMain: false,
-      mapsUrl: "https://www.google.com/maps/search/?api=1&query=Calle+108+134-Y+49+Fraccionamiento+Las+Am%C3%A9ricas+2+97302+M%C3%A9rida+Yucat%C3%A1n"
+      mapsUrl: "https://maps.app.goo.gl/ot3khrcxxEuETcobA"
     }
   ];
 
