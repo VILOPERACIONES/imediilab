@@ -1,10 +1,6 @@
-import React from 'react';
+import React from "react";
 
 const LocationsSection = () => {
-  const openMaps = (url: string) => {
-    window.open(url, '_blank', 'noopener,noreferrer');
-  };
-
   const locations = [
     {
       name: "Sucursal Itzimná",
@@ -12,7 +8,7 @@ const LocationsSection = () => {
       phone: "999-XXX-XXXX",
       hours: "Lun-Vie: 7:00 AM - 7:00 PM",
       isMain: false,
-      mapsUrl: "https://maps.app.goo.gl/kxz7F7RRnaRy23BN9"
+      mapsUrl: "https://maps.app.goo.gl/kxz7F7RRnaRy23BN9",
     },
     {
       name: "Sucursal Matriz",
@@ -20,7 +16,7 @@ const LocationsSection = () => {
       phone: "999-XXX-XXXX",
       hours: "Lun-Vie: 7:00 AM - 7:00 PM",
       isMain: true,
-      mapsUrl: "https://maps.app.goo.gl/RGp8bBR5witFaAaj7"
+      mapsUrl: "https://maps.app.goo.gl/RGp8bBR5witFaAaj7",
     },
     {
       name: "Sucursal Las Américas",
@@ -28,8 +24,8 @@ const LocationsSection = () => {
       phone: "999-XXX-XXXX",
       hours: "Lun-Vie: 7:00 AM - 7:00 PM",
       isMain: false,
-      mapsUrl: "https://maps.app.goo.gl/ot3khrcxxEuETcobA"
-    }
+      mapsUrl: "https://maps.app.goo.gl/ot3khrcxxEuETcobA",
+    },
   ];
 
   return (
@@ -37,18 +33,17 @@ const LocationsSection = () => {
       <div className="max-w-[1200px] mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
-          <h2 className="text-slate-900 text-3xl font-bold tracking-tight mb-4">
-            Nuestras Sucursales
-          </h2>
-          <p className="text-slate-500 text-lg">
-            Ubica tu sucursal más cercana en Mérida, Yucatán.
-          </p>
+          <h2 className="text-slate-900 text-3xl font-bold tracking-tight mb-4">Nuestras Sucursales</h2>
+          <p className="text-slate-500 text-lg">Ubica tu sucursal más cercana en Mérida, Yucatán.</p>
         </div>
-        
+
         {/* Locations Grid */}
         <div className="grid grid-cols-3 gap-5 max-md:grid-cols-1">
           {locations.map((location, index) => (
-            <div key={index} className="bg-white rounded-xl border border-slate-200 overflow-hidden flex flex-col relative">
+            <div
+              key={index}
+              className="bg-white rounded-xl border border-slate-200 overflow-hidden flex flex-col relative"
+            >
               {location.isMain && (
                 <span className="absolute top-0 right-0 bg-[#FF431B] text-white text-[10px] font-bold uppercase px-3 py-1.5 rounded-bl-lg z-10">
                   Matriz
@@ -56,41 +51,75 @@ const LocationsSection = () => {
               )}
 
               <div className="p-7 flex flex-col flex-1">
-                <h3 className="text-slate-900 text-xl font-bold mb-6 pr-16">
-                  {location.name}
-                </h3>
+                <h3 className="text-slate-900 text-xl font-bold mb-6 pr-16">{location.name}</h3>
 
                 <div className="space-y-4 mb-8 flex-1">
                   <div className="flex items-start gap-3">
-                    <svg className="w-4 h-4 text-slate-400 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                    <svg
+                      className="w-4 h-4 text-slate-400 mt-0.5 shrink-0"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                      />
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                      />
                     </svg>
                     <span className="text-slate-500 text-sm leading-relaxed">{location.address}</span>
                   </div>
-                  
+
                   <div className="flex items-center gap-3">
-                    <svg className="w-4 h-4 text-slate-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                    <svg
+                      className="w-4 h-4 text-slate-400 shrink-0"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                      />
                     </svg>
                     <span className="text-slate-500 text-sm">{location.phone}</span>
                   </div>
-                  
+
                   <div className="flex items-center gap-3">
-                    <svg className="w-4 h-4 text-slate-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    <svg
+                      className="w-4 h-4 text-slate-400 shrink-0"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                      />
                     </svg>
                     <span className="text-slate-500 text-sm">{location.hours}</span>
                   </div>
                 </div>
-                
-                <button
-                  type="button"
-                  onClick={() => openMaps(location.mapsUrl)}
+
+                <a
+                  href={location.mapsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="block text-center w-full border border-amber-400 text-amber-500 font-semibold text-sm py-3.5 rounded-lg hover:bg-amber-50 transition-colors mt-auto"
                 >
                   Ver en Google Maps
-                </button>
+                </a>
               </div>
             </div>
           ))}
